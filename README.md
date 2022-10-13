@@ -1,6 +1,6 @@
 # Proyek Tengah Semester PBP-C04
-Nama Website: (Masih belum ditentukan)
-Aplikasi Heroku: pbp-c04.herokuapp.com/
+- Nama Website: (Masih belum ditentukan)
+- Aplikasi Heroku: pbp-c04.herokuapp.com/
 
 ## Anggota Kelompok
 - Kevin Marcellius Alrino
