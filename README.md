@@ -3,11 +3,11 @@ Nama Website: (Masih belum ditentukan)
 Aplikasi Heroku: pbp-c04.herokuapp.com/
 
 ## Anggota Kelompok
-Kevin Marcellius Alrino
-Azhra Yashna Azka
-Sulthan Fathurrahman Tsany
-Nisrina Zakiyah Aeni
-Calista Vimalametta Heryadi
+- Kevin Marcellius Alrino
+- Azhra Yashna Azka
+- Sulthan Fathurrahman Tsany
+- Nisrina Zakiyah Aeni
+- Calista Vimalametta Heryadi
 
 ## Tentang Website
 platform X adalah website untuk menggalang dana dan berdonasi secara online dan transparan. platform x menyediakan wadah bagi individu maupun organisasi yang ingin :
@@ -26,8 +26,8 @@ Dengan adanya website X, pengguna dapat berdonasi atau bersedekah sebagai bentuk
 - Notifikasi
 
 ## Roles
-Donatur
-Pengaju donasi
+- Donatur
+- Pengaju donasi
 
 ## Target audience dan user
 Seseorang atau sekelompok orang yang membutuhkan dana untuk suatu tujuan sosial, pribadi, dan lainnya.
