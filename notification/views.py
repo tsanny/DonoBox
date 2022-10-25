@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 def show_notification(request):
     return render(request, "notification.html")
 
-@login_required()
 def notification_json(request):
     user = request.user
     data = Notification.objects.filter(user=user)
