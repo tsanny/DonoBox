@@ -2,6 +2,35 @@
 
 {% block meta %}
 <title>Login</title>
+<script>
+        $(document).ready(function(){
+
+        $("#form_register").on("submit",function(e) {
+        e.preventDefault() 
+        let context = getFormData($(`#form_register`))
+        $.ajax({
+          method: "POST",
+          url: "/autentikasi/register/",
+          data: context,
+        }).done(function(resp) {
+          console.log(resp)
+          $("#exampleModal").modal("toggle")
+        });
+    })
+    })
+    function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+</script>
+
 {% endblock meta %}
 
 {% block content %}
@@ -36,8 +65,39 @@
                 <li>{{ message }}</li>
             {% endfor %}
         </ul>
-    {% endif %}     
-        
+    {% endif %} 
+    
+    <div class="container">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Register</button>
+        </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Formulir Registrasi</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="form_register">  
+                    {% csrf_token %}  
+                    <table>  
+                        {{ form.as_table }}  
+                        {{ role_form }}
+                        <tr>  
+                            <td></td>
+                            <td><input type="submit" name="submit" value="Daftar"/></td>  
+                        </tr>  
+                    </table>  
+                </form>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+    Belum mempunyai akun? <a href="{% url 'autentikasi:register' %}">Buat Akun</a>
+    
     Belum mempunyai akun? <a href="{% url 'autentikasi:register' %}">Buat Akun</a>
 
 </div>
