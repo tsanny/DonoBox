@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+  <script>
+    $(document).ready(function() {
+      $.get("{% url 'crowdfund:show_crowdfund_json' id %}", function(fund) {
+        $("head").append(`
+          <title>${fund[0]["fields"]["title"]}<title>
+        `)
+        $("body").append(`
+          <h1 class="text-center p-3">${fund[0]["fields"]["title"]}</h1>
+          <div class="d-flex flex-row">
+            <div class="p-3 flex-fill">
+              <h3>Informasi Lebih Lanjut</h3>
+              ${fund[0]["fields"]["description"]}
+            </div>
+            <div class="p-3 flex-fill">
+              <h5>Jumlah Dana Terkumpul</h5>
+              ${fund[0]["fields"]["collected"]}
+              <br><br>
+              <h5>Target Dana Terkumpul</h5>
+              ${fund[0]["fields"]["target"]}
+              <br><br>
+              <h5>Batas Waktu Pengumpulan Dana</h5>
+              ${fund[0]["fields"]["deadline"]}
+              <br><br>
+              <a class="btn border" data-bs-toggle="modal" data-bs-target="#modal">Donasi</a>
+            </div>
+          </div>
+        `)
+      }, "json")
+    })
+  </script>
+{% endblock meta %}
+
+{% block content %}
+  <div class="modal fade" id="modal" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Formulir Donasi</h5>
+          <a class="btn-close" data-bs-dismiss="modal"></a>
+        </div>
+        <div class="modal-body text-center">
+          <form method="POST" action="">
+            {% csrf_token %}
+            <h6>Jumlah Donasi</h6>
+            <input type="number" id="amount" placeholder="0" class="form-control">
+            <br>
+            <h6>Komentar kepada Penggalang Dana</h6>
+            <input type="text" id="comment" placeholder="Tuliskan komentarmu di sini" class="form-control">
+            <br>
+            <input class="btn border" type="submit" value="Kumpulkan">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
