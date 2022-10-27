@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Halo, {{user}} </h2>
+<p>Date: {{date}}</p>
+...
+<button><a href="{% url 'autentikasi:logout' %}">Logout</a></button>
+...
+{% endblock content %}
