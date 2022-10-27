@@ -14,6 +14,7 @@
             {% csrf_token %}  
             <table>  
                 {{ form.as_table }}  
+                {{ role_form }}
                 <tr>  
                     <td></td>
                     <td><input type="submit" name="submit" value="Daftar"/></td>  
