@@ -1,37 +1,62 @@
 <head>
-    <title>{% block title %} {{user}} {%  endblock title %}</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>{% block title %} {{user}} {% endblock title %}</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-    {% block content %}
-    <h1>{{user}}</h1>
-    <p>{{bio}}</p>
-    <p>{{role}}</p>
-    <p>{{picture}}</p>
+  {% block content %}
+  <h1>{{user}}</h1>
+  <p id="profilebio">{{bio}}</p>
+  <p>{{role}}</p>
+  <p>{{picture}}</p>
 
-    <img src={{picture}}>
+  <img src="{{picture}}" id="profilepicture" />
 
-    <form method="POST" action="{% url 'userprofile:edit_profile' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <!-- <table>
-            <tr>
-                <td>
-                    <label for="imageupload">Upload Image : </label> 
-                    <input type="file" id="imageupload" name="imageupload" accept="image/png, image/jpeg"/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="bioinput">Bio : </label>
-                    <input type="text" id="bioinput" name="bioinput"/>
-                </td>
-            </tr>
-        </table> -->
-        {{form.as_p}}
+  <form
+    id="profileform"
+    method="POST"
+    action="{% url 'userprofile:edit_profile' %}"
+    enctype="multipart/form-data"
+    data-url="{% url 'userprofile:edit_profile' %}"
+  >
+    {% csrf_token %} {{form.as_p}}
 
-        <button type="submit" id="submitBtn">Save changes</button>
-    </form>
+    <button type="submit" id="submitBtn">Save changes</button>
+  </form>
 
-    {% endblock content %}
+  {% endblock content %}
+  <script>
+    $(document).ready(function () {
+      $("#profileform").on("submit", function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        // formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+        $.ajax({
+          method: "POST",
+          url: $("#profileform").data("url"),
+          data: formData,
+          processData: false,
+          contentType: false,
+
+
+          success: function () {
+            alert("Data Successfully Posted");
+            $.ajax({
+              method: "GET",
+              url: "{% url 'userprofile:show_json' %}",
+
+              success: function (response) {
+                $('#profilepicture').attr("src", response[0].fields.picture);
+                $('#profilebio').empty();
+                $('#profilebio').append(response[0].fields.bio);
+              }
+            })
+          },
+        });
+      });
+    });
+
+
+  </script>
 </body>

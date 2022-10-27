@@ -15,3 +15,4 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='userprofile/images', null=True)
     bio = models.TextField(null=True)
     role = models.CharField(choices=role_choices, max_length=10, default=donatur,)
+    saldo = models.BigIntegerField(default=0)

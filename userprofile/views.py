@@ -1,8 +1,11 @@
 import os
 from django.shortcuts import render
 from userprofile.models import UserProfile
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, JsonResponse
+from django.core import serializers
 from userprofile.forms import *
+
+
 
 # Create your views here.
 def show_profile(request):
@@ -24,7 +27,6 @@ def edit_profile(request):
         form = ProfileForm(request.POST, request.FILES, instance=user)
 
         if form.is_valid():
-            # form.save()
             obj = form.save(commit=False)
 
             if obj.picture:
@@ -32,5 +34,14 @@ def edit_profile(request):
 
             if obj.bio:
                 obj.save(update_fields=['bio'])
+            
 
-    return HttpResponseRedirect('/profile')
+            return HttpResponse("success")
+    
+    # return JsonResponse({'error': True, 'errors': form.errors})
+
+
+
+def show_json(request):
+    profileobj = UserProfile.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", profileobj), content_type="application/json")
