@@ -5,7 +5,6 @@ from django.core import serializers
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 
-from autentikasi.models import Account
 from .forms import AccountRoleForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
