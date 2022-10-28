@@ -1,0 +1,69 @@
+/* ====== GLOBAL ===== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#main {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(63, 78, 79);
+    display: flex;
+    align-items: center;
+    color: #fffdfd;
+}
+
+#about{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(220, 215, 201);
+    display: flex;
+    align-items: center;
+}
+
+#pertanyaan{
+    background-color: rgb(220, 215, 201);
+}
+
+.footer {
+    background-color: rgb(63, 78, 79);
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 210px;
+    margin-top: 200px;
+    word-break: break-all;
+  }
+  
+  .footer-col {
+    width: 32%;
+    padding: 0 15px;
+  }
+  .footer-col h4 {
+    font-size: 18px;
+    color: #fff;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .footer-col ul li a {
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: 300;
+    color: #bbbbbb;
+    display: block;
+  }
+  .footer-col ul li:hover a {
+    color: #fff;
+    padding-left: 8px;
+  }
+  
+  
