@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Artikel</title>
+
+{% endblock meta %}
+
+{% block content %}
+{% for data in artikel %}
+<h1>{{data.title}}</h1>
+<h2> by {{data.user}} on {{data.date}}</h2>
+<p>{{data.description}}</p>
+{% endfor %}
+{% endblock content %}

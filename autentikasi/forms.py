@@ -1,9 +1,9 @@
 from django.forms import ModelForm
-from.models import Account
+from userprofile.models import UserProfile
 
 class AccountRoleForm(ModelForm):
     class Meta:
-        model = Account
+        model = UserProfile
         fields = ['role']
 
     def __init__(self, *args, **kwargs):

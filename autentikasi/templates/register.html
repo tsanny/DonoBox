@@ -22,13 +22,7 @@
             </table>  
         </form>
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+
     Sudah mempunyai akun? <a href="{% url 'autentikasi:login' %}">Login</a>
 
 </div>  
