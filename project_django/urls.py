@@ -23,6 +23,7 @@ urlpatterns = [
     path('notification/', include('notification.urls')),
     path('profile/', include('userprofile.urls')),
     path('artikel/', include('artikel.urls'))
+
 ]
 
 # TODO: Implement Routings Here
