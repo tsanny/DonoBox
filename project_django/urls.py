@@ -24,6 +24,8 @@ urlpatterns = [
     path('profile/', include('userprofile.urls')),
     path('artikel/', include('artikel.urls')),
     path('crowdfund/', include('crowdfund.urls')),
+    path('profile/', include('userprofile.urls')),
 ]
 
 # TODO: Implement Routings Here
+
