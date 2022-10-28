@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'example_app',
     'katalog',
     'notification',
+    'autentikasi',
+    'artikel',
     'crowdfund',
 ]
 
@@ -121,7 +123,6 @@ TIME_ZONE = 'Asia/Jakarta'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
