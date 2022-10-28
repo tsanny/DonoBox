@@ -1,8 +1,8 @@
 from django.db import models
-from ..autentikasi.models import Account
+from userprofile.models import UserProfile
 
 class Crowdfund(models.Model):
-    fundraiser = models.ForeignKey(Account, on_delete = models.CASCADE)
+    fundraiser = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     collected = models.PositiveIntegerField()
@@ -10,7 +10,7 @@ class Crowdfund(models.Model):
     deadline = models.DateTimeField()
 
 class Donation(models.Model):
-    donator = models.ForeignKey(Account, on_delete = models.CASCADE)
+    donator = models.ForeignKey(UserProfile, on_delete = models.CASCADE)
     crowdfund = models.ForeignKey(Crowdfund, on_delete = models.CASCADE)
     amount = models.PositiveIntegerField()
     comment = models.TextField(blank=True)

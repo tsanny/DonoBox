@@ -11,7 +11,7 @@ def show_crowdfunds(request):
     context = {
         "logged_in": request.user.is_authenticated,
         "user": request.user,
-        "role": getattr(getattr(request.user, "account", None), "role", None)
+        "role": getattr(getattr(request.user, "userprofile", None), "role", None)
         }
     return render(request, "crowdfunds.html", context)
 
@@ -19,7 +19,7 @@ def show_crowdfunds(request):
 def show_crowdfund(request, id):
     context = {
         "id": id,
-        "role": getattr(request.user.account)
+        "role": request.user.userprofile.role
         }
     return render(request, "crowdfund.html", context)
 
@@ -46,7 +46,7 @@ def show_donations_json_by_fund(request, id):
 
 def add_crowdfund(request):
     form = CrowdfundForm(request.POST)
-    form.instance.fundraiser = request.user.account
+    form.instance.fundraiser = request.user.userprofile
     if form.is_valid():
         form.save()
         return JsonResponse(form.cleaned_data)
@@ -54,7 +54,7 @@ def add_crowdfund(request):
 
 def add_donation(request, id):
     form = DonationForm(request.POST)
-    form.instance.donator = request.user.account
+    form.instance.donator = request.user.userprofile
     form.instance.crowdfund = Crowdfund.objects.get(pk=id)
     if form.is_valid():
         form.save()
