@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Artikel</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#form_artikel').on('submit', function(e) {
+        e.preventDefault();
+        let title = $("#title").val();
+        let description = $("#description").val();
+        $.ajax({
+          method: "POST",
+          url: "/artikel/add/",
+          data: {"title":title, "description":description},
+        }).done(function(resp) {
+          console.log(resp)
+          $("#artikel_container").append(
+            `
+            <li>
+              <a href=${resp.pk}>${resp.title}</a> | ${resp.user} <br>
+        ${resp.short_description} ...
+                  </li>
+                        `    
+          )
+          $("#exampleModal").modal("toggle")
+        });
+    })
+  })
+
+</script>
+
+{% endblock meta %}
+
+{% block content %}
+
+<h1>Hello</h1>
+{% if user.is_authenticated %} 
+<div class="container">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
+        Buat Artikel Baru</button>
+    <a href="{% url 'homepage:homepage' %}"><button type="button" class="btn btn-primary">Kembali </button></a>
+    </div>
+{% else %}
+<a href="{% url 'autentikasi:login' %}">login</a>  untuk menambah artikel
+<a href="{% url 'homepage:homepage' %}"><button type="button" class="btn btn-primary">Kembali </button></a>
+{% endif %} 
+
+<ul>
+    {% for artikel in list_artikel %}
+    <li>
+        <a href={{artikel.pk}}>{{artikel.title}}</a> | {{artikel.user}} <br>
+        {{artikel.short_description}} ...
+    </li>
+    {% endfor %}
+
+</ul>
+
+<ul id="artikel_container">
+
+</ul>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Buat Artikel Baru</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form_artikel">
+              {% csrf_token%}
+            <div class="mb-3">
+              <label for="title" class="col-form-label">Judul:</label>
+              <input type="text" class="form-control" id="title">
+            </div>
+            <div class="mb-3">
+              <label for="description" class="col-form-label">Deskripsi:</label>
+              <textarea class="form-control" id="description"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" value="submit" class="btn btn-primary" id="submit_btn">Create</button>
+            </div>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
