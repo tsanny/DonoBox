@@ -42,10 +42,18 @@ INSTALLED_APPS = [
     'example_app',
     'katalog',
     'notification',
+<<<<<<< HEAD
     'crowdfund',
     'autentikasi',
     'artikel',
     'userprofile',
+=======
+    'autentikasi',
+    'artikel',
+    'crowdfund',
+    'userprofile',
+    'homepage',
+>>>>>>> origin/modul-crowdfund
 ]
 
 MIDDLEWARE = [
@@ -119,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Jakarta'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

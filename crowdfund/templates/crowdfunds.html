@@ -2,48 +2,41 @@
 
 {% block meta %}
   <title>Daftar Penggalangan Dana</title>
-  <script>
-    function appendCrowdfund(id, title, collected, target, deadline) {
-      $("#crowdfunds").append(`
-        <div class="col-sm-6 col-md-4 p-3">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title">${title}</h5>
-              <h6 class="card-subtitle text-muted">Digalang oleh ...</h6>
-              <hr>
-              <ul>
-                <li>${collected} terkumpul</li>
-                <li>${target} dibutuhkan</li>
-                <li>Batas pengumpulan: ${deadline}</li>
-              </ul>
-              <a href="https://PBP-C04.herokuapp.com/crowdfund/${id}" class="btn border">Lihat Detail</a>
-            </div>
-          </div>
-        </div>
-      `) // gimana supaya bisa pake jquery tag di dalem django tag
-    }
-    $(document).ready(function() {
-      $.get("{% url 'crowdfund:show_crowdfunds_json_ongoing' %}", function(crowdfunds) {
-        for (const fund of crowdfunds) {
-          appendCrowdfund(
-            fund["pk"],
-            fund["fields"]["title"],
-            fund["fields"]["collected"],
-            fund["fields"]["target"],
-            fund["fields"]["deadline"]
-          )
-        }
-      }, "json")
-    })
-  </script>
+  <script src="{% static 'crowdfunds.js' %}"></script>
 {% endblock meta %}
 
 {% block content %}
   <h1 class="text-center p-3">Daftar Penggalangan Dana</h1>
-  {% if not user.is_authenticated %}
-    <h5 class="text-center text-muted p-3">Login untuk dapat melihat detail dan berdonasi kepada orang-orang yang membutuhkan</h3>
-  {% else %}
-    <h5 class="text-center text-muted p-3">Ayo berdonasi kepada orang-orang yang membutuhkan, {{user}}</h3>
-  {% endif %}
+  <div id="message"></div>
+  <div class="row justify-content-center p-3" id="button"></div>
   <div class="row justify-content-center p-3" id="crowdfunds"></div>
+
+  <div class="modal fade" id="form" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Formulir Penggalangan Dana</h5>
+          <a class="btn-close" data-bs-dismiss="modal"></a>
+        </div>
+        <div class="modal-body text-center">
+          <form method="POST" action="">
+            {% csrf_token %}
+            <h6>Judul Penggalangan Dana</h6>
+            <input type="text" id="title" placeholder="Masukkan judul di sini" class="form-control">
+            <br>
+            <h6>Informasi mengenai Penggalangan Dana</h6>
+            <input type="text" id="description" placeholder="Masukkan deskripsi di sini" class="form-control">
+            <br>
+            <h6>Target Dana Terkumpul</h6>
+            <input type="number" id="target" placeholder="0" class="form-control">
+            <br>
+            <h6>Batas Waktu Pengumpulan Dana</h6>
+            <input type="datetime-local" id="deadline" class="form-control">
+            <br>
+            <input class="btn border" type="submit" value="Galang Dana">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
