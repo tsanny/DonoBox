@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+  <title>Daftar Penggalangan Dana</title>
+  <script src="{% static 'crowdfunds_donator.js' %}"></script>
+{% endblock meta %}
+
+{% block content %}
+  <div class="text-center p-3">
+    <h1>Daftar Penggalangan Dana</h1>
+    {% if not logged_in  %}
+      <h5 class="text-muted">Login untuk melihat detail dan berdonasi kepada orang-orang yang membutuhkan</h3>
+    {% else %}
+      <h5 class="text-muted">Ayo berdonasi kepada orang-orang yang membutuhkan, {{user}}</h3>
+    {% endif %}
+    <div class="text-muted" id="no-crowdfunds">
+      <br><br>
+      Belum ada galangan dana yang sedang berlangsung saat ini.
+    </div>
+  </div>
+  <div class="row justify-content-center p-3" id="crowdfunds"></div>
+{% endblock content %}

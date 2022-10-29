@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+  <title>Daftar Penggalangan Dana</title>
+  <script src="{% static 'crowdfunds_fundraiser.js' %}"></script>
+{% endblock meta %}
+
+{% block content %}
+  <div class="text-center p-3">
+    <h1>Daftar Penggalangan Dana</h1>
+    <h5 class="text-muted">Berikut adalah galangan dana yang Anda ajukan, {{user}}</h3>
+    <br>
+    <a class="btn border" data-bs-toggle="modal" data-bs-target="#form">Galang Dana Baru</a>
+    <div class="text-muted" id="no-crowdfunds">
+      <br><br>
+      Anda belum mengajukan penggalangan dana.
+    </div>
+  </div>
+  <div class="row justify-content-center p-3" id="crowdfunds"></div>
+
+  <div class="modal fade" id="form" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Formulir Penggalangan Dana</h5>
+          <a class="btn-close" data-bs-dismiss="modal"></a>
+        </div>
+        <div class="modal-body text-center">
+          <form method="POST" action="">
+            {% csrf_token %}
+            <h6>Judul Penggalangan Dana</h6>
+            <span class="text-muted">Judul harus di antara 1 dan 50 karakter.</span>
+            <input type="text" id="title" placeholder="Masukkan judul di sini" class="form-control" required>
+            <br>
+            <h6>Informasi mengenai Penggalangan Dana</h6>
+            <span class="text-muted">Deskripsi harus tidak lebih dari 1000 karakter.</span>
+            <input type="text" id="description" placeholder="Masukkan deskripsi di sini" class="form-control">
+            <br>
+            <h6>Target Dana Terkumpul</h6>
+            <span class="text-muted">Target dana harus di antara 1 dan 1000000000.</span>
+            <input type="number" id="target" placeholder="0" class="form-control" required>
+            <br>
+            <h6>Batas Waktu Pengumpulan Dana</h6>
+            <span class="text-muted">Batas waktu harus tidak kurang dari saat ini.</span>
+            <input type="datetime-local" id="deadline" class="form-control" required>
+            <br>
+            <div class="text-danger" id="error"></div>
+            <input class="btn border" type="submit" value="Galang Dana">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
