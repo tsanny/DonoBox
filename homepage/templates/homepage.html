@@ -4,25 +4,15 @@
 {% block content %}
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APP PBP</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static '/css/homepage.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 </head>
 
 <style>
-    section{
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    nav.bg-custom{
-      background-color: rgb(63, 78, 79);
-    }
-
     .question h3{
         align-items: center;
     }
@@ -81,48 +71,8 @@
     }
 </style>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
-      <a class="navbar-brand" href="#">Donobox</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Crowdfund</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Notifikasi</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profile</a>
-            </li>
-            {% if user.is_authenticated %}
-
-            <!-- sambungin ke login logout -->
-                <li class="nav-item">
-                    <a href="#"><button class="submit" type="submit">Logout</button></a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a href="#"><button class="submit" type="submit">Login</button></a>
-                </li>
-            {% endif %}
-        </ul>
-      </div>
-    </nav>
-</header>
-
 <div id="main" class="main-banner">
-    <div class="card-banner">
+    <div style="width:100%" class="card-banner">
         <div class="container">
             <div class="row">
               <div class="col-lg-12">
@@ -132,19 +82,15 @@
                       <div class="row">
                         <div class="col-lg-12">
                           <h6>Donobox</h6>
-                          <h2>Lorem ipsum dolor sit amet</h2>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-                        <div class="col-lg-12">
-                          <div class="border-first-button scroll-to-section">
-                          </div>
+                          <h2>Tempat terbaik untuk menggalang dana dan berdonasi</h2>
+                          <p>DonoBox bertujuan untuk menjadi wadah dan sarana bagi masyarakat yang menginginkan untuk berdonasi atau menggalang dana bagi yang membutuhkan dengan mudah, terjamin, dan transparan.</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="right-image wow fadeInRight">
-                      <img src="{%static 'assets/images/Person with a cold-pana 1.png' %}" alt="">
+                      <img src="{%static '/img/donobox.png' %}" alt="">
                     </div>
                   </div>
                 </div>
@@ -161,7 +107,7 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="about-left-image  wow fadeInLeft" >
-                <img src="{%static 'assets/images/Ilustrasi About us.png' %}" alt="">
+                <img src="{%static '/img/logo.png' %}" alt="">
               </div>
             </div>
             <div class="col-lg-6 align-self-center  wow fadeInRight">
@@ -170,7 +116,8 @@
                   <h6>ABOUT US</h6>
                   <h4>Apa itu Donobox ?</h4>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>DonoBox adalah sebuah wadah untuk menggalang dana dan berdonasi secara online dan transparan. Donobox menyediakan wadah bagi individu maupun organisasi yang ingin
+                    menggalang dana untuk tujuan sosial, personal, dan lainnya serta berdonasi dengan mudah secara online melalui Donobox.</p>
                 </div> 
               </div>
             </div>
@@ -185,61 +132,59 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <h4><center> FAQs</h4></center>
-    <section>
-        <div class="faq">
-            <div class="question">
-                <h3>Pertanyaan</h3>
+                <h2><center> FAQs</h2></center>
+                <div class="faq">
+                    <div class="question">
+                        <h3>Apakah donasi saya tersalurkan 100%?</h3>
 
-                <svg width="15" height="10" viewBox="0 0 42 25">
-                    <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-            </div>
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                        </svg>
+                    </div>
 
-            <div class="answer">
-                <p>
-                   ini jawaban
-                </p>
-            </div>
-        </div>
+                    <div class="answer">
+                        <p>
+                        Donobox akan mengalokasikan donasi operasional sebesar 5% dari total donasi yang terkumpul. Sebagai perusahaan bermisi sosial, Donobox berupaya untuk bisa mengelola platform secara berkelanjutan.</p>
+                        <p>Karenanya setiap donasi di Donobox sudah termasuk donasi operasional Donobox sebesar 5%, yang kami gunakan untuk mengelola proses donasi yang transparan dan mudah dalam skala besar</p>
+                    </div>
+                </div>
 
-        <div class="faq">
-            <div class="question">
-                <h3>Pertanyaan</h3>
+                <div class="faq">
+                    <div class="question">
+                        <h3>Bagaimana saya tahu donasi sudah terverifikasi?</h3>
 
-                <svg width="15" height="10" viewBox="0 0 42 25">
-                    <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-            </div>
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                        </svg>
+                    </div>
 
-            <div class="answer">
-                <p>
-                    ini jawaban
-                </p>
-            </div>
-        </div>
+                    <div class="answer">
+                        <p>Setelah donasi terverifikasi, maka Anda akan mendapatkan notifikasi melalui email ataupun SMS jika Anda memasukkan nomor WhatsApp</p>
+                    </div>
+                </div>
 
-        <div class="faq">
-            <div class="question">
-                <h3>Pertanyaan</h3>
+                <div class="faq">
+                    <div class="question">
+                        <h3>Apakah wajib membuat akun sebelum berdonasi?</h3>
 
-                <svg width="15" height="10" viewBox="0 0 42 25">
-                    <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
-                </svg>
-            </div>
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                        </svg>
+                    </div>
 
-            <div class="answer">
-                <p>
-                    ini jawaban
-                </p>
-            </div>
-        </div>
-    </section>
+                    <div class="answer">
+                        <p>
+                            
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="col-sm">
-                <h4><center>
+                <br>
+                <br>
+                <h2><center>
                     Apakah Anda memiliki pertanyaan?
-                </center></h4>
+                </center></h2>
                 <div id="question" class="question-section">
                     {%if user.is_authenticated%}
                     <form method = 'POST' id="formtask"><center>
@@ -279,43 +224,122 @@
                     <p style="font-size: 1.2rem; color: black;"><center><a href="#" style="color: rgb(63, 78, 79);">login</a> untuk bertanya
                         </center></p>
                     {% endif %}
+                </div>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </div>
 
-<footer id= "footer" class="footer">
-    <div id= "container-footer" class="container">
-        <div class="row">
-            <div class="footer-col">
-                <h4>DONOBOX</h4>
-                <ul>
-                    <!-- masih belum bisa di klik -->
-                    <li style="list-style: none;"><a href="#about">About Us</a></li>
-                    <li style="list-style: none;"><a href="#ourteam">Tim Kami</a></li>
-                </ul>
-            </div> 
-        <div class="footer-col">
-            <h4>CONTACT US</h4>
-            <ul>
-                <li style="list-style: none;"><a style="color: #bbbbbb;"><i id class="fa fa-envelope"></i> lalala@gmail.com</a></li>
-                <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fa fa-phone"></i> 021-9272-8161</a></li>
-            </ul>
+
+<div id="ourteam" class="team section-bg">
+   <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h4> Donobox</h4>
+            <h2> Our Team</h2>
         </div>
-            <div class="footer-col">
-                <h4>OUR SOCIAL MEDIA</h4>
-                <ul>
-                    <li style="list-style: none;"><a style="color: #bbbbbb;"><i id class="fa fa-facebook"></i> Lorem ipsum</a></li>
-                    <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fa fa-instagram"></i> Lorem ipsum</a></li>
-                    <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fa fa-twitter"></i> Lorem ipsum</a></li>
-                </ul>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="100">
+                    <div class="member-img">
+                        <img src="{%static '/img/fathur_2.png' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href=""><i class="fab fa-github"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Sulthan Fathurrahman Tsany</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
             </div>
+
+            <!-- 2nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="200">
+                    <div class="member-img">
+                        <img src="{%static '/img/ririn_profile.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href=""><i class="fab fa-github"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Nisrina Zakiyah Aeni</h4>
+                        <span>Sistem Informasi 2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="300">
+                    <div class="member-img">
+                        <img src="{%static '/img/azka_profile.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href=""><i class="fab fa-github"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Azhra Yashna Azka</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="400">
+                    <div class="member-img">
+                        <img src="{%static '/img/calista_profile.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href=""><i class="fab fa-github"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Calista Vimalametta Heryadi</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="500">
+                    <div class="member-img">
+                        <img src="{%static '/img/kevin.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href=""><i class="fab fa-github"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Kevin Marcellius Alrino</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-</footer>
+</div>
   
   
 
