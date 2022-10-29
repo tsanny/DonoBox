@@ -1,0 +1,333 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>APP PBP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/homepage.css' %}" />
+</head>
+
+<style>
+    section{
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav.bg-custom{
+      background-color: #3f4e4f;
+    }
+
+    .question h3{
+        align-items: center;
+    }
+
+    .faq{
+        max-width: 700px;
+        margin-top: 1rem;
+        margin-bottom: 10px;
+        border-bottom: 2px solid rgb(15, 13, 13);
+        cursor: pointer;
+    }
+
+    .question{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .question h3{
+        font-size: 20px;
+
+    }
+
+    .answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 1.4s ease;
+    }
+
+    .answer p{
+        font-size: 15px;
+    }
+
+    .faq.active .answer{
+        max-height: 300px;
+        animation: fade 1s ease-in-out;
+    }
+
+    .faq.active svg {
+        transform: rotate(180deg);
+    }
+
+    svg{
+        transition: transform .5s ease-in;
+    }
+
+    @keyframes fade {
+        from{
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
+      <a class="navbar-brand" href="#">Donobox</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Crowdfund</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Notifikasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Profile</a>
+            </li>
+            {% if user.is_authenticated %}
+
+            <!-- sambungin ke login logout -->
+                <li class="nav-item">
+                    <a href="#"><button class="submit" type="submit">Logout</button></a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="#"><button class="submit" type="submit">Login</button></a>
+                </li>
+            {% endif %}
+        </ul>
+      </div>
+    </nav>
+</header>
+
+<div id="main" class="main-banner">
+    <div class="card-banner">
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-6 align-self-center">
+                    <div class="left-content show-up header-text wow fadeInLeft">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <h6>Donobox</h6>
+                          <h2>Lorem ipsum dolor sit amet</h2>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="border-first-button scroll-to-section">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="right-image wow fadeInRight">
+                      <img src="{%static 'assets/images/Person with a cold-pana 1.png' %}" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>      
+    </div>
+</div>
+
+<div id="about" class="about section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="about-left-image  wow fadeInLeft" >
+                <img src="{%static 'assets/images/Ilustrasi About us.png' %}" alt="">
+              </div>
+            </div>
+            <div class="col-lg-6 align-self-center  wow fadeInRight">
+              <div class="about-right-content">
+                <div class="section-heading">
+                  <h6>ABOUT US</h6>
+                  <h4>Apa itu Donobox ?</h4>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<div id="pertanyaan" class="pertanyaan section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h4><center> FAQs</h4></center>
+    <section>
+        <div class="faq">
+            <div class="question">
+                <h3>Pertanyaan</h3>
+
+                <svg width="15" height="10" viewBox="0 0 42 25">
+                    <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="answer">
+                <p>
+                   ini jawaban
+                </p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question">
+                <h3>Pertanyaan</h3>
+
+                <svg width="15" height="10" viewBox="0 0 42 25">
+                    <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="answer">
+                <p>
+                    ini jawaban
+                </p>
+            </div>
+        </div>
+
+        <div class="faq">
+            <div class="question">
+                <h3>Pertanyaan</h3>
+
+                <svg width="15" height="10" viewBox="0 0 42 25">
+                    <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <div class="answer">
+                <p>
+                    ini jawaban
+                </p>
+            </div>
+        </div>
+    </section>
+            </div>
+            <div class="col-sm">
+                <h4><center>
+                    Apakah Anda memiliki pertanyaan?
+                </center></h4>
+                <div id="question" class="question-section">
+                    {%if user.is_authenticated%}
+                    <form method = 'POST' id="formtask"><center>
+                        <table>
+                            {% csrf_token %} 
+                            {{form}}
+                        </table>
+                        <br>
+                        <button type="submit" id="kirim">Kirim</button>
+                        <a href="{% url 'homepage:list_pertanyaan' %}"><button type="button" id="lihat-pertanyaan">Lihat pertanyaan</button></a>
+                        <br>
+                        <br>
+                    </center></form>
+                    <script>
+                        const form = document.getElementById("formtask");
+                        form.addEventListener("submit", handleSubmit);
+                        function handleSubmit(e) {
+                          e.preventDefault();
+                          $.ajax({
+                            type: 'POST',
+                            url: "",
+                            data: $("#formtask").serialize(),
+                            dataType: 'json',
+                            success: handleSuccess
+                          })
+                        }
+                        function handleSuccess(data) {
+                            if (data.msg === 'Success') {
+                                form.reset();
+                                alert('Terima kasih, feedback anda berhasil ditambahkan!');
+                              }
+                        }
+                    </script>
+                    {% else %}
+
+                    <!-- ini sambungin ke login -->
+                    <p style="font-size: 1.2rem; color: black;"><center><a href="#" style="color: rgb(63, 78, 79);">login</a> untuk bertanya
+                        </center></p>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</div>
+
+<footer id= "footer" class="footer">
+    <div id= "container-footer" class="container">
+        <div class="row">
+            <div class="footer-col">
+                <h4>DONOBOX</h4>
+                <ul>
+                    <!-- masih belum bisa di klik -->
+                    <li style="list-style: none;"><a href="#about">About Us</a></li>
+                    <li style="list-style: none;"><a href="#ourteam">Tim Kami</a></li>
+                </ul>
+            </div> 
+        <div class="footer-col">
+            <h4>CONTACT US</h4>
+            <ul>
+                <li style="list-style: none;"><a style="color: #bbbbbb;"><i id class="fa fa-envelope"></i> lalala@gmail.com</a></li>
+                <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fa fa-phone"></i> 021-9272-8161</a></li>
+            </ul>
+        </div>
+            <div class="footer-col">
+                <h4>OUR SOCIAL MEDIA</h4>
+                <ul>
+                    <li style="list-style: none;"><a style="color: #bbbbbb;"><i id class="fa fa-facebook"></i> Lorem ipsum</a></li>
+                    <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fa fa-instagram"></i> Lorem ipsum</a></li>
+                    <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fa fa-twitter"></i> Lorem ipsum</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+  
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    const freq_question = document.querySelectorAll(".faq");
+    freq_question.forEach(faq => {
+        faq.addEventListener("click", () => {
+            faq.classList.toggle("active");
+        });
+    });    
+</script>
+
+{% endblock content %}
+

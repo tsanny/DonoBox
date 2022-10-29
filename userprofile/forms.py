@@ -11,3 +11,9 @@ class ProfileForm(ModelForm):
         self.fields['picture'].required = False
         self.fields['bio'].required = False
 
+class TopUpForm(ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['saldo']
+
+    

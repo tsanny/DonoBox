@@ -16,7 +16,9 @@ def show_profile(request):
         'picture' : user_data.picture,
         'bio' : user_data.bio,
         'role' : user_data.role,
-        'form' : ProfileForm
+        'saldo' : user_data.saldo,
+        'form1' : ProfileForm,
+        'form2' : TopUpForm,
     }
     
     return render(request, 'profile.html', context)
@@ -40,7 +42,20 @@ def edit_profile(request):
     
     # return JsonResponse({'error': True, 'errors': form.errors})
 
+def edit_saldo(request):
+    user = request.user.userprofile
+    if request.POST:
+        form = TopUpForm(request.POST, request.FILES, instance=user)
 
+        print(form.is_valid())
+
+        if form.is_valid():
+            obj = form.save(commit=False)
+
+            if obj.saldo:
+                obj.save(update_fields=['saldo'])
+
+            return HttpResponse('Saldo ditambah')
 
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
