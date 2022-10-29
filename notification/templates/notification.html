@@ -9,8 +9,37 @@
 
     <div class="notifications"></div>
 
-    <button>Tambah Saldo</button>
+    <button data-bs-toggle="modal" data-bs-target="#modal1">Tambah Saldo</button>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modal1Label">Tambahkan Saldo</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="form" class="form-signin w-100 m-auto" method="POST">
+
+              {% csrf_token %}
+
+              <div class="form-floating mb-2">
+                  <p id="currentSaldo">Saldo saat ini: Rp. </p>
+              </div>
+
+              <div class="form-floating">
+                  <textarea type="text" name="saldo" placeholder="saldo" class="form-control" rows="3"></textarea>
+                  <label for="floatingSaldo">Masukkan nominal (Rp.)</label>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="tambahSaldoBtn" type="button" class="btn btn-primary" type="submit" data-bs-dismiss="modal" value="Post">Tambah</button>
+              </div>
+            </form>
+        </div>
+      </div>
 </div>
 
 <script>
@@ -20,6 +49,7 @@
     });
   
     async function load() {
+      // Get daftar notifikasi
       $.ajax({url: "http://127.0.0.1:8000/notification/json", type: 'GET', success: function(data) {
         var res = `
         <table>
@@ -39,7 +69,26 @@
         }
         $(".notifications").html(res+"</table>");
       }});
+
+      // Get saldo user
+      $.ajax({url: "http://127.0.0.1:8000/profile/json", type: 'GET', success: function(data) {
+        $("#currentSaldo").html("Saldo saat ini: Rp. " + data[0].fields.saldo);
+      }});
+
     };
+    
+    $("#tambahSaldoBtn").click(function() {
+    var data = $("#form");
+    $.ajax({
+      type:'PATCH',
+      url: "http://127.0.0.1:8000/notification/ajax-tambah-saldo",
+      data: data.serialize(),
+      success: function() {
+          $("#form")[0].reset();
+          load();
+      }
+    });
+  });
 
   </script>
 
