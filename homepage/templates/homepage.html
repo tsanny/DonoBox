@@ -71,6 +71,7 @@
     }
 </style>
 
+
 <div id="main" class="main-banner">
     <div style="width:100%" class="card-banner">
         <div class="container">
@@ -125,8 +126,64 @@
         </div>
       </div>
     </div>
-  </div>
-  
+</div>
+
+<div id="fitur" class="fitur section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading  wow fadeInDown" >
+                    <h6>FITUR KAMI</h6>
+                    <h4>Kami Menawarkan Fitur</h4>
+                </div>            
+            </div>
+            <div id="featured-3" class="container px-4 py-5">
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div id="card-fitur" class="feature col">
+                            <br>
+                            <br>
+                            <h2>Tentukan Peran Anda</h2>
+                            <br>
+                            <p>Jadilah seorang Fundraiser dan buat penggalangan dana untuk kebutuhan Anda atau jadilah seorang Donator dan donasikan ke berbagai penggalangan dana yang ada di website kami.</p>
+                            <br>
+                            <a href="#">
+                            <button font-family: 'Poppins';  background-color: #ffffff" type="button" class="submit">Cek Disini</button>
+                            </a>
+                    </div>
+                    <div id="card-fitur" class="feature col">
+                        <br>
+                        <br>
+                        <h2>Cek Saldo</h2>
+                        <br>
+                        <p>Isi saldo akun Anda untuk dapat mendonasikan dana ke penggalangan dana yang ada pada website Kami.</p>
+                            <br>
+                            <br>
+                            <br>
+                            <a href="#">
+                            <button font-family: 'Poppins'; background-color: #ffffff;" type="button" class="submit">Cek Disini</button>
+                            </a>
+                            
+                    </div>
+                    <div id="card-fitur" class="feature col">
+                        <br>
+                        <br>
+                        <h2>Notifikasi</h2>
+                        <br>
+                        <p>Terimalah pengetahuan seputar donasi yang Anda berikan ataupun yang anda terima.</p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <a href="#">
+                        <button font-family: 'Poppins'; background-color: #ffffff" type="button" class="submit">Cek Disini</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div id="pertanyaan" class="pertanyaan section">
     <div class="container">
@@ -174,14 +231,12 @@
 
                     <div class="answer">
                         <p>
-                            
+                            Ya, Anda diwajibkan untuk membuat akun sebelum Anda mulai berdonasi
                         </p>
                     </div>
                 </div>
             </div>
             <div class="col-sm">
-                <br>
-                <br>
                 <h2><center>
                     Apakah Anda memiliki pertanyaan?
                 </center></h2>
@@ -193,8 +248,8 @@
                             {{form}}
                         </table>
                         <br>
-                        <button type="submit" id="kirim">Kirim</button>
-                        <a href="{% url 'homepage:list_pertanyaan' %}"><button type="button" id="lihat-pertanyaan">Lihat pertanyaan</button></a>
+                        <button type="submit" class="submit" id="kirim">Kirim</button>
+                        <a href="{% url 'homepage:list_pertanyaan' %}"><button type="button"  class="submit" id="lihat-pertanyaan">Lihat pertanyaan</button></a>
                         <br>
                         <br>
                     </center></form>
@@ -221,7 +276,7 @@
                     {% else %}
 
                     <!-- ini sambungin ke login -->
-                    <p style="font-size: 1.2rem; color: black;"><center><a href="#" style="color: rgb(63, 78, 79);">login</a> untuk bertanya
+                    <p style="font-size: 1.2rem; color: black;"><center><a href="#" style="color: rgb(162, 123, 92);">login</a> untuk bertanya
                         </center></p>
                     {% endif %}
                 </div>
@@ -244,9 +299,9 @@
                         <img src="{%static '/img/fathur_2.png' %}" class="img-fluid" alt="">
                         <!-- Social icon -->
                         <div class="social">
-                            <a href=""><i class="fab fa-github"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/sulthanftr"><i class="fab fa-github"></i></a>
+                            <a href="https://instagram.com/sulthanfathur"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/sulthan-fathurrahman-t-51a1311a1/"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
                     <!-- member info -->
@@ -264,9 +319,9 @@
                         <img src="{%static '/img/ririn_profile.jpg' %}" class="img-fluid" alt="">
                         <!-- Social icon -->
                         <div class="social">
-                            <a href=""><i class="fab fa-github"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/ririnzakiyahh"><i class="fab fa-github"></i></a>
+                            <a href="https://instagram.com/ririnzakiyahh"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/nisrinazakiyah/"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
                     <!-- member info -->
@@ -284,9 +339,9 @@
                         <img src="{%static '/img/azka_profile.jpg' %}" class="img-fluid" alt="">
                         <!-- Social icon -->
                         <div class="social">
-                            <a href=""><i class="fab fa-github"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/breadworshipper"><i class="fab fa-github"></i></a>
+                            <a href="https://instagram.com/azhra.azka"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/azhra-azka-358042219"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
                     <!-- member info -->
@@ -324,9 +379,9 @@
                         <img src="{%static '/img/kevin.jpg' %}" class="img-fluid" alt="">
                         <!-- Social icon -->
                         <div class="social">
-                            <a href=""><i class="fab fa-github"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/kevinmarcellius/"><i class="fab fa-github"></i></a>
+                            <a href="https://www.instagram.com/kevinmarcellius_/"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/kevin-marcellius-alrino-6b322b240/"><i class="fab fa-linkedin"></i></a>
                         </div>
                     </div>
                     <!-- member info -->

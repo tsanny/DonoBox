@@ -47,3 +47,4 @@ def list_pertanyaan(request):
     list_pertanyaan = FrequentlyAskedQuestion.objects.all()
     context = {'list_pertanyaan': list_pertanyaan}
     return render(request, 'form_pertanyaan.html', context)
+
