@@ -9,7 +9,21 @@ from userprofile.forms import *
 
 # Create your views here.
 def show_profile(request):
+
     user_data = UserProfile.objects.get(user=request.user)
+
+    bday = user_data.birthday
+    phone = user_data.phone
+    email = user_data.email
+
+    if bday == None:
+        bday = "-"
+
+    if phone == None:
+        phone = "-"
+
+    if email == None:
+        email = "-"
 
     context = {
         'user' : request.user,
@@ -17,16 +31,24 @@ def show_profile(request):
         'bio' : user_data.bio,
         'role' : user_data.role,
         'saldo' : user_data.saldo,
+        'birthday' : bday,
+        'phone' : phone,
+        'email' : email,
         'form1' : ProfileForm,
         'form2' : TopUpForm,
     }
     
     return render(request, 'profile.html', context)
 
+def show_topup(request):
+
+    return render(request, 'topup.html')
+
 def edit_profile(request):
     user = request.user.userprofile
     if request.POST:
         form = ProfileForm(request.POST, request.FILES, instance=user)
+        print(form.is_valid())
 
         if form.is_valid():
             obj = form.save(commit=False)
@@ -36,26 +58,38 @@ def edit_profile(request):
 
             if obj.bio:
                 obj.save(update_fields=['bio'])
+
+            if obj.birthday:
+                obj.save(update_fields=['birthday'])
+
+            if obj.email:
+                obj.save(update_fields=['email'])
+
+            if obj.phone:
+                obj.save(update_fields=['phone'])
             
 
             return HttpResponse("success")
     
-    # return JsonResponse({'error': True, 'errors': form.errors})
+    
 
 def edit_saldo(request):
     user = request.user.userprofile
     if request.POST:
-        form = TopUpForm(request.POST, request.FILES, instance=user)
+        new_saldo = request.POST['saldo']
+        print(f'new saldo {new_saldo}')
+        user_data = UserProfile.objects.get(user=request.user)
+        print(f'user saldo {user_data.saldo}')
 
-        print(form.is_valid())
+        user_data.saldo += int(new_saldo)
 
-        if form.is_valid():
-            obj = form.save(commit=False)
+        user_data.save()
+            
+        return HttpResponseRedirect('/profile')
+            # if obj.saldo:
+            #     obj.save(update_fields=['saldo'])
 
-            if obj.saldo:
-                obj.save(update_fields=['saldo'])
-
-            return HttpResponse('Saldo ditambah')
+            
 
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
