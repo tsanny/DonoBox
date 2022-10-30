@@ -1,0 +1,412 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP PBP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://unpkg.com/ionicons@4.2.2/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/homepage.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+
+<style>
+    .question h3{
+        align-items: center;
+    }
+
+    .faq{
+        max-width: 700px;
+        margin-top: 1rem;
+        margin-bottom: 10px;
+        border-bottom: 2px solid rgb(15, 13, 13);
+        cursor: pointer;
+    }
+
+    .question{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .question h3{
+        font-size: 20px;
+
+    }
+
+    .answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 1.4s ease;
+    }
+
+    .answer p{
+        font-size: 15px;
+    }
+
+    .faq.active .answer{
+        max-height: 300px;
+        animation: fade 1s ease-in-out;
+    }
+
+    .faq.active svg {
+        transform: rotate(180deg);
+    }
+
+    svg{
+        transition: transform .5s ease-in;
+    }
+
+    @keyframes fade {
+        from{
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to{
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+
+<div id="main" class="main-banner">
+    <div style="width:100%" class="card-banner">
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="row">
+                  <div class="col-lg-6 align-self-center">
+                    <div class="left-content show-up header-text wow fadeInLeft">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <h6>Donobox</h6>
+                          <h2>Tempat terbaik untuk menggalang dana dan berdonasi</h2>
+                          <p>DonoBox bertujuan untuk menjadi wadah dan sarana bagi masyarakat yang menginginkan untuk berdonasi atau menggalang dana bagi yang membutuhkan dengan mudah, terjamin, dan transparan.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="right-image wow fadeInRight">
+                      <img src="{%static '/img/donobox.png' %}" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>      
+    </div>
+</div>
+
+<div id="about" class="about section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="about-left-image  wow fadeInLeft" >
+                <img src="{%static '/img/logo.png' %}" alt="">
+              </div>
+            </div>
+            <div class="col-lg-6 align-self-center  wow fadeInRight">
+              <div class="about-right-content">
+                <div class="section-heading">
+                  <h6>ABOUT US</h6>
+                  <h4>Apa itu Donobox ?</h4>
+                </div>
+                <p>DonoBox adalah sebuah wadah untuk menggalang dana dan berdonasi secara online dan transparan. Donobox menyediakan wadah bagi individu maupun organisasi yang ingin
+                    menggalang dana untuk tujuan sosial, personal, dan lainnya serta berdonasi dengan mudah secara online melalui Donobox.</p>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="fitur" class="fitur section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading  wow fadeInDown" >
+                    <h6>FITUR KAMI</h6>
+                    <h4>Kami Menawarkan Fitur</h4>
+                </div>            
+            </div>
+            <div id="featured-3" class="container px-4 py-5">
+                <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                    <div id="card-fitur" class="feature col">
+                            <br>
+                            <br>
+                            <h2>Tentukan Peran Anda</h2>
+                            <br>
+                            <p>Jadilah seorang Fundraiser dan buat penggalangan dana untuk kebutuhan Anda atau jadilah seorang Donator dan donasikan ke berbagai penggalangan dana yang ada di website kami.</p>
+                            <br>
+                            <a href="#">
+                            <button font-family: 'Poppins';  background-color: #ffffff" type="button" class="submit">Cek Disini</button>
+                            </a>
+                    </div>
+                    <div id="card-fitur" class="feature col">
+                        <br>
+                        <br>
+                        <h2>Cek Saldo</h2>
+                        <br>
+                        <p>Isi saldo akun Anda untuk dapat mendonasikan dana ke penggalangan dana yang ada pada website Kami.</p>
+                            <br>
+                            <br>
+                            <br>
+                            <a href="#">
+                            <button font-family: 'Poppins'; background-color: #ffffff;" type="button" class="submit">Cek Disini</button>
+                            </a>
+                            
+                    </div>
+                    <div id="card-fitur" class="feature col">
+                        <br>
+                        <br>
+                        <h2>Notifikasi</h2>
+                        <br>
+                        <p>Terimalah pengetahuan seputar donasi yang Anda berikan ataupun yang anda terima.</p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <a href="#">
+                        <button font-family: 'Poppins'; background-color: #ffffff" type="button" class="submit">Cek Disini</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="pertanyaan" class="pertanyaan section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h2><center> FAQs</h2></center>
+                <div class="faq">
+                    <div class="question">
+                        <h3>Apakah donasi saya tersalurkan 100%?</h3>
+
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="answer">
+                        <p>
+                        Donobox akan mengalokasikan donasi operasional sebesar 5% dari total donasi yang terkumpul. Sebagai perusahaan bermisi sosial, Donobox berupaya untuk bisa mengelola platform secara berkelanjutan.</p>
+                        <p>Karenanya setiap donasi di Donobox sudah termasuk donasi operasional Donobox sebesar 5%, yang kami gunakan untuk mengelola proses donasi yang transparan dan mudah dalam skala besar</p>
+                    </div>
+                </div>
+
+                <div class="faq">
+                    <div class="question">
+                        <h3>Bagaimana saya tahu donasi sudah terverifikasi?</h3>
+
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="answer">
+                        <p>Setelah donasi terverifikasi, maka Anda akan mendapatkan notifikasi melalui email ataupun SMS jika Anda memasukkan nomor WhatsApp</p>
+                    </div>
+                </div>
+
+                <div class="faq">
+                    <div class="question">
+                        <h3>Apakah wajib membuat akun sebelum berdonasi?</h3>
+
+                        <svg width="15" height="10" viewBox="0 0 42 25">
+                            <path d="M3 3L21 21L39 3" stroke="black" stroke-width="7" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+
+                    <div class="answer">
+                        <p>
+                            Ya, Anda diwajibkan untuk membuat akun sebelum Anda mulai berdonasi
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <h2><center>
+                    Apakah Anda memiliki pertanyaan?
+                </center></h2>
+                <div id="question" class="question-section">
+                    {%if user.is_authenticated%}
+                    <form method = 'POST' id="formtask"><center>
+                        <table>
+                            {% csrf_token %} 
+                            {{form}}
+                        </table>
+                        <br>
+                        <button type="submit" class="submit" id="kirim">Kirim</button>
+                        <a href="{% url 'homepage:list_pertanyaan' %}"><button type="button"  class="submit" id="lihat-pertanyaan">Lihat pertanyaan</button></a>
+                        <br>
+                        <br>
+                    </center></form>
+                    <script>
+                        const form = document.getElementById("formtask");
+                        form.addEventListener("submit", handleSubmit);
+                        function handleSubmit(e) {
+                          e.preventDefault();
+                          $.ajax({
+                            type: 'POST',
+                            url: "",
+                            data: $("#formtask").serialize(),
+                            dataType: 'json',
+                            success: handleSuccess
+                          })
+                        }
+                        function handleSuccess(data) {
+                            if (data.msg === 'Success') {
+                                form.reset();
+                                alert('Terima kasih, feedback anda berhasil ditambahkan!');
+                              }
+                        }
+                    </script>
+                    {% else %}
+
+                    <!-- ini sambungin ke login -->
+                    <p style="font-size: 1.2rem; color: black;"><center><a href="#" style="color: rgb(162, 123, 92);">login</a> untuk bertanya
+                        </center></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="ourteam" class="team section-bg">
+   <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h4> Donobox</h4>
+            <h2> Our Team</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="100">
+                    <div class="member-img">
+                        <img src="{%static '/img/fathur_2.png' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href="https://github.com/sulthanftr"><i class="fab fa-github"></i></a>
+                            <a href="https://instagram.com/sulthanfathur"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/sulthan-fathurrahman-t-51a1311a1/"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Sulthan Fathurrahman Tsany</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="200">
+                    <div class="member-img">
+                        <img src="{%static '/img/ririn_profile.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href="https://github.com/ririnzakiyahh"><i class="fab fa-github"></i></a>
+                            <a href="https://instagram.com/ririnzakiyahh"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/nisrinazakiyah/"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Nisrina Zakiyah Aeni</h4>
+                        <span>Sistem Informasi 2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="300">
+                    <div class="member-img">
+                        <img src="{%static '/img/azka_profile.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href="https://github.com/breadworshipper"><i class="fab fa-github"></i></a>
+                            <a href="https://instagram.com/azhra.azka"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/azhra-azka-358042219"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Azhra Yashna Azka</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="400">
+                    <div class="member-img">
+                        <img src="{%static '/img/calista_profile.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href=""><i class="fab fa-github"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Calista Vimalametta Heryadi</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5nd --> 
+            <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+                <div class="member" data-aos="fade-up" data-aos-delat="500">
+                    <div class="member-img">
+                        <img src="{%static '/img/kevin.jpg' %}" class="img-fluid" alt="">
+                        <!-- Social icon -->
+                        <div class="social">
+                            <a href="https://github.com/kevinmarcellius/"><i class="fab fa-github"></i></a>
+                            <a href="https://www.instagram.com/kevinmarcellius_/"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/kevin-marcellius-alrino-6b322b240/"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <!-- member info -->
+                    <div class="member-info">
+                        <h4>Kevin Marcellius Alrino</h4>
+                        <span>Ilmu Komputer 2021</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+  
+  
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    const freq_question = document.querySelectorAll(".faq");
+    freq_question.forEach(faq => {
+        faq.addEventListener("click", () => {
+            faq.classList.toggle("active");
+        });
+    });    
+</script>
+
+{% endblock content %}
+

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .section-heading h2 {
+        font-weight: 700;
+        color: #000;
+        font-size: 48px;
+    }
+
+    .submit{
+      display: inline-block !important;
+      padding: 5px 10px !important;
+      color: rgb(162, 123, 92) !important;
+      border: 1px solid rgb(162, 123, 92) !important;
+      border-radius: 23px;
+      font-weight: 500 !important;
+      letter-spacing: 0.3px !important;
+      transition: all 0.5s;
+    }
+</style>
+
+<div id="pertanyaan" class="services section" style="margin-top: 200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading  wow fadeInDown" >
+                    <h2><center>PERTANYAAN</center></h2>
+                    <br>
+                </div>
+            </div>                  
+            <div class="container">
+                <div class="card-container">
+                    {% for i in list_pertanyaan %}
+                    <div style="border-radius: 20px;background-color:rgb(162, 123, 92); box-shadow: 5px 5px 8px 2px rgb(63, 78, 79); margin-bottom: 52px;" class="card">
+                        <h6 style="text-align: center; color: #bbbbbb; padding-top: 16px;">Pertanyaan:</h6>
+                        <h3 style="text-align: center; color: #fff; font-size: medium; word-break: break-all; padding-top: 4px;">{{ i.pertanyaan }}</h3>
+                        <br>
+                        <h6 style="text-align: center; color: #bbbbbb; padding-top: 16px;">Jawaban:</h6>
+                        <p style="text-align: center; color: #fff; font-size: medium; word-break: break-all; padding-top: 4px; padding-bottom: 16px;">Belum ada jawaban</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div> 
+        <a href="{% url 'homepage:homepage' %}"><button type="button"  class="submit" id="kembali">Kembali</button></a>
+        <br>
+        <br>
+    </div>
+</div>  
+
+
+{% endblock content %}

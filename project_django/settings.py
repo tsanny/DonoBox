@@ -41,10 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'example_app',
     'katalog',
+    'homepage',
     'notification',
     'autentikasi',
     'artikel',
-
 ]
 
 MIDDLEWARE = [
