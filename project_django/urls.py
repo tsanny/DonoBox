@@ -23,7 +23,8 @@ urlpatterns = [
     path('autentikasi/', include('autentikasi.urls')),
     path('notification/', include('notification.urls')),
     path('profile/', include('userprofile.urls')),
-    path('artikel/', include('artikel.urls'))
+    path('artikel/', include('artikel.urls')),
+    path('crowdfund/', include('crowdfund.urls'))
 ]
 
 # TODO: Implement Routings Here
