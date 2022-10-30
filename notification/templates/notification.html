@@ -16,6 +16,11 @@
   letter-spacing: 0.3px !important;
   transition: all 0.5s;
   }
+
+  .footer {
+  position: fixed;
+  bottom: auto;
+  }
 </style>
 
 <div class="">
@@ -26,7 +31,7 @@
           <div class="d-flex w-100 justify-content-between">
             <h3 class="mb-0">Notifikasi</h3>
             <!-- Button trigger modal -->
-            <button type="button" class="submit" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Tambah Saldo
             </button>
           </div>
@@ -62,8 +67,8 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button id="tambahSaldoBtn" type="button" class="btn btn-primary" type="submit" data-dismiss="modal" value="Post">Tambah</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="tambahSaldoBtn" type="button" class="btn btn-primary" type="submit" data-bs-dismiss="modal" value="Post">Tambah</button>
               </div>
             </form>
           </div>

@@ -113,22 +113,22 @@
               <a  href="#about">About Us</a>
           </li>
           <li class="nav-item">
-              <a  href="#">Crowdfund</a>
+              <a  href="{% url 'crowdfund:show_crowdfunds' %}">Crowdfund</a>
           </li>
           <li class="nav-item">
               <a  href="{% url 'notification:show_notification' %}">Notifikasi</a>
           </li>
           <li class="nav-item">
-              <a  href="#">Profile</a>
+              <a  href="{% url 'userprofile:show_profile' %}">Profile</a>
           </li>
           {% if user.is_authenticated %}
           <!-- sambungin ke login logout -->
               <li class="nav-item">
-                  <a href="#"><button class="submit" type="submit">Logout</button></a>
+                  <a href="{% url 'autentikasi:logout' %}"><button class="submit" type="submit">Logout</button></a>
               </li>
           {% else %}
               <li class="nav-item">
-                  <a href="#"><button class="submit" type="submit">Login</button></a>
+                  <a href="{% url 'autentikasi:login' %}"><button class="submit" type="submit">Login</button></a>
               </li>
           {% endif %}
       </ul>
