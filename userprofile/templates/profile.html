@@ -1,3 +1,5 @@
+{% include 'base.html' %}
+
 <head>
   <title>{% block title %} {{user}} {% endblock title %}</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -10,16 +12,9 @@
   />
 
   <style>
-    body {
-      color: #6f8ba4;
-      margin-top: 20px;
-    }
     .section {
       padding: 100px 0;
       position: relative;
-    }
-    .gray-bg {
-      background-color: #f5f5f5;
     }
     img {
       /* max-width: 100%; */
@@ -264,6 +259,7 @@
               url: "{% url 'userprofile:show_json' %}",
 
               success: function (response) {
+                $("#modalprofile").modal('hide');
                 $("#profilepicture").attr("src", response[0].fields.picture);
                 $("#profilebio").empty();
                 $("#profilebio").html(response[0].fields.bio);
@@ -272,9 +268,7 @@
                 $("#profileemail").empty();
                 $("#profileemail").html(response[0].fields.email);
                 $("#profilebirthday").empty();
-                $("#profilebirthday").html(response[0].fields.birthday);
-                $("#modalprofile").modal('hide');
-                
+                $("#profilebirthday").html(response[0].fields.birthday); 
               },
             });
           },

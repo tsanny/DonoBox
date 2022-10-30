@@ -12,5 +12,4 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('faq_ajax/', faq_ajax, name='faq_ajax'),
     path('list_pertanyaan/', list_pertanyaan, name='list_pertanyaan'),
-    
 ]
