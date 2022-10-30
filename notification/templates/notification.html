@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<div class="mx-5 my-3">
+
+    <div class="notifications"></div>
+
+    <button>Tambah Saldo</button>
+
+</div>
+
+<script>
+    
+    $(document).ready(function() {
+      load();
+    });
+  
+    async function load() {
+      $.ajax({url: "http://127.0.0.1:8000/notification/json", type: 'GET', success: function(data) {
+        var res = `
+        <table>
+          <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Time</th>
+          </tr>
+        `;
+        for (i = 0; i<data.length; i++) {
+          res+=
+                `<tr>
+                    <td>${data[i].fields.title}</td>
+                    <td>${data[i].fields.description}</td>
+                    <td>${data[i].fields.time}</td>
+                </tr>`
+        }
+        $(".notifications").html(res+"</table>");
+      }});
+    };
+
+  </script>
+
+{% endblock content %}
