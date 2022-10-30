@@ -13,7 +13,7 @@ class UserProfile(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to='userprofile/images', null=True)
+    picture = models.ImageField(upload_to='userprofile/images', null=True, default='homepage/static/img/person.png')
     bio = models.TextField(null=True)
     role = models.CharField(choices=role_choices, max_length=10, default=donatur,)
     saldo = models.BigIntegerField(default=0)
