@@ -97,7 +97,7 @@
 
 <header>
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-custom">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{% url 'homepage:home' %}">
       <img width="50px" height="50px" src="{%static '/img/logo.png' %}" alt="DONOBOX"> Donobox
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,16 +107,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-              <a  href="#">Home</a>
+              <a  href="{% url 'homepage:home' %}">Home</a>
           </li>
           <li class="nav-item">
-              <a  href="#">About Us</a>
+              <a  href="#about">About Us</a>
           </li>
           <li class="nav-item">
               <a  href="#">Crowdfund</a>
           </li>
           <li class="nav-item">
-              <a  href="#">Notifikasi</a>
+              <a  href="{% url 'notification:show_notification' %}">Notifikasi</a>
           </li>
           <li class="nav-item">
               <a  href="#">Profile</a>
