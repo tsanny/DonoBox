@@ -4,10 +4,12 @@ from userprofile.models import UserProfile
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, JsonResponse
 from django.core import serializers
 from userprofile.forms import *
+from django.contrib.auth.decorators import login_required
 
 
 
 # Create your views here.
+@login_required(login_url='/autentikasi')
 def show_profile(request):
 
     user_data = UserProfile.objects.get(user=request.user)
@@ -40,6 +42,7 @@ def show_profile(request):
     
     return render(request, 'profile.html', context)
 
+@login_required(login_url='/autentikasi')
 def show_topup(request):
 
     return render(request, 'topup.html')
