@@ -42,18 +42,11 @@ INSTALLED_APPS = [
     'example_app',
     'katalog',
     'notification',
-<<<<<<< HEAD
-    'crowdfund',
-    'autentikasi',
-    'artikel',
-    'userprofile',
-=======
     'autentikasi',
     'artikel',
     'crowdfund',
     'userprofile',
     'homepage',
->>>>>>> origin/modul-crowdfund
 ]
 
 MIDDLEWARE = [

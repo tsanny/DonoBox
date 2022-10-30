@@ -11,6 +11,9 @@ class Notification(models.Model):
     time = models.DateTimeField(null=True, blank=True)
     timesince = models.CharField(max_length=100, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-time']
+
     def __str__(self):
         return f"({self.pk}) {self.title} | {self.user.username}"
 

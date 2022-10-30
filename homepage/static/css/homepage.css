@@ -62,6 +62,37 @@ header img {
 
 }
 
+/* 
+---------------------------------------------
+Services Style
+--------------------------------------------- 
+*/
+
+.fitur {
+  padding-top: 130px;
+}
+/* Header service atau fitur */
+.fitur .section-heading {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.section-heading h6 {
+  font-weight: 700;
+  color: rgb(162, 123, 92);
+  font-size: 20px;
+}
+.section-heading h4 {
+  font-weight: 700;
+  color: #000;
+  font-size: 48px;
+}
+#card-fitur {
+  border-radius: 20px;
+  width: 360px;
+}
+
+
+
 #pertanyaan {
    background-color: rgb(220, 215, 201);
    align-items: center;
@@ -174,7 +205,7 @@ header img {
 }
 
 
-  @media only screen and (max-width: 202px) {
+  @media only screen and (max-width: 600px) {
     .header-area .main-nav .logo h4 {
       font-size: 20px;
     }
@@ -187,7 +218,7 @@ header img {
     }
   
     .main-banner .right-image {
-      margin: 30px auto 0px auto;
+      margin: auto;
       text-align: center;
     }
 

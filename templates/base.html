@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head style="background-color: rgb(63, 78, 79);">
+
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -50,48 +51,48 @@
       transition: all 0.5s;
     }
 
-.submit:hover{
-  background-color: rgb(162, 123, 92);
-  color: #fff !important;
-}
+    .submit:hover{
+      background-color: rgb(162, 123, 92);
+      color: #fff !important;
+    }
 
-    .footer {
-    background-color: rgb(63, 78, 79);
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100%;
-    word-break: break-all;
-  }
-  
-  .footer-col {
-    width: 32%;
-    padding: 0 15px;
-  }
-  .footer-col h4 {
-    font-size: 18px;
-    color: #fff;
-    text-transform: capitalize;
-    margin-bottom: 20px;
-    margin-top: 30px;
-    font-weight: 500;
-    position: relative;
-  }
-  
-  .footer-col ul li:not(:last-child) {
-    margin-bottom: 10px;
-  }
-  .footer-col ul li a {
-    font-size: 16px;
-    text-decoration: none;
-    font-weight: 300;
-    color: #bbbbbb;
-    display: block;
-  }
-  .footer-col ul li:hover a {
-    color: #fff;
-    padding-left: 8px;
-  }
+      .footer {
+      background-color: rgb(63, 78, 79);
+      background-position: center center;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      word-break: break-all;
+    }
+    
+    .footer-col {
+      width: 32%;
+      padding: 0 15px;
+    }
+    .footer-col h4 {
+      font-size: 18px;
+      color: #fff;
+      text-transform: capitalize;
+      margin-bottom: 20px;
+      margin-top: 30px;
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .footer-col ul li:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: 300;
+      color: #bbbbbb;
+      display: block;
+    }
+    .footer-col ul li:hover a {
+      color: #fff;
+      padding-left: 8px;
+    }
 </style>
 
 <header>
@@ -121,7 +122,6 @@
               <a  href="#">Profile</a>
           </li>
           {% if user.is_authenticated %}
-
           <!-- sambungin ke login logout -->
               <li class="nav-item">
                   <a href="#"><button class="submit" type="submit">Logout</button></a>
@@ -159,16 +159,16 @@
           <div class="footer-col">
               <h4>CONTACT US</h4>
               <ul>
-                  <li style="list-style: none;"><a style="color: #bbbbbb;"><i id class="fa fa-envelope"></i> lalala@gmail.com</a></li>
+                  <li style="list-style: none;"><a style="color: #bbbbbb;"><i id class="fa fa-envelope"></i> Donobox@gmail.com</a></li>
                   <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fa fa-phone"></i> 021-9272-8161</a></li>
               </ul>
           </div>
           <div class="footer-col">
               <h4>OUR SOCIAL MEDIA</h4>
               <ul>
-                  <li style="list-style: none;"><a style="color: #bbbbbb;"><i class="fab fa-facebook"></i> Lorem ipsum</a></li>
-                  <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fab fa-instagram"></i> Lorem ipsum</a></li>
-                  <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fab fa-twitter"></i> Lorem ipsum</a></li>
+                  <li style="list-style: none;"><a style="color: #bbbbbb;"><i class="fab fa-facebook"></i> Donobox</a></li>
+                  <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fab fa-instagram"></i> @donobox_id</a></li>
+                  <li style="list-style: none;"><a style="color: #bbbbbb;" ><i class="fab fa-twitter"></i> @donobox_id</a></li>
               </ul>
           </div>
       </div>
