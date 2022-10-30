@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+  <script>
+      var crowdfundUrl = "http://localhost:8000/crowdfund/funds/json/{{id}}"
+      var donationUrl = "http://localhost:8000/crowdfund/donations/json/{{id}}"
+  </script>
+  <script src="{% static 'crowdfund_fundraiser.js' %}"></script>
+{% endblock meta %}
+
+{% block content %}
+  <div class="modal fade" id="history" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Riwayat Donasi</h5>
+          <a class="btn-close" data-bs-dismiss="modal"></a>
+        </div>
+        <div class="modal-body text-center" id="donations">
+          <p class="text-muted" id="no-donations">Belum ada donasi yang terkumpul.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
