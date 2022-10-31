@@ -1,3 +1,48 @@
+function fillDeadline(deadline) {
+    var month
+    switch (deadline.substring(5, 7)) {
+        case "01":
+            month = "Januari"
+            break
+        case "02":
+            month = "Februari"
+            break
+        case "03":
+            month = "Maret"
+            break
+        case "04":
+            month = "April"
+            break
+        case "05":
+            month = "Mei"
+            break
+        case "06":
+            month = "Juni"
+            break
+        case "07":
+            month = "Juli"
+            break
+        case "08":
+            month = "Agustus"
+            break
+        case "09":
+            month = "September"
+            break
+        case "10":
+            month = "Oktober"
+            break
+        case "11":
+            month = "November"
+            break
+        case "12":
+            month = "Desember"
+            break
+    }
+    var result = "".concat(deadline.substring(8, 10), " ", month, " ", deadline.substring(0, 4))
+    result = result.concat(" - ", deadline.substring(11, 19), " WIB")
+    return result
+}
+
 function appendCrowdfund(id, title, fundraiser_name, collected, target, deadline) {
     $("#crowdfunds").append(`
       <div class="col-sm-6 col-md-4 p-3">
@@ -9,9 +54,9 @@ function appendCrowdfund(id, title, fundraiser_name, collected, target, deadline
             <ul>
               <li>${collected} terkumpul</li>
               <li>${target} dibutuhkan</li>
-              <li>Batas pengumpulan: ${deadline}</li>
+              <li>Batas pengumpulan: ${fillDeadline(deadline)}</li>
             </ul>
-            <a href="http://localhost:8000/crowdfund/${id}/" class="btn border">Lihat Detail</a>
+            <a href=${crowdfundUrl.replace("1", id)} class="btn border">Lihat Detail</a>
           </div>
         </div>
       </div>
@@ -19,7 +64,7 @@ function appendCrowdfund(id, title, fundraiser_name, collected, target, deadline
 }
 
 $(document).ready(function() {
-    $.get("http://localhost:8000/crowdfund/funds/json/myfunds/", function(crowdfunds) {
+    $.get(myFundsUrl, function(crowdfunds) {
         if (crowdfunds.length != 0) {
             $("#no-crowdfunds").hide()
             for (const crowdfund of crowdfunds) {
@@ -45,7 +90,7 @@ $(document).ready(function() {
             csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
         }
       
-        $.post("http://localhost:8000/crowdfund/funds/add/", form, function(crowdfund) {
+        $.post(addFundUrl, form, function(crowdfund) {
             if (!("error" in crowdfund)) {
                 $("#no-crowdfunds").hide()
                 appendCrowdfund(
@@ -63,10 +108,10 @@ $(document).ready(function() {
                 $("#error").html(`Pastikan isian formulir memenuhi ketentuan.<br><br>`)
             }
         }, "json")
+    })
 
-        $("#form").on("hidden.bs.modal", function() {
-            $("form").trigger("reset")
-            $("#error").html(``)
-        })
+    $("#form").on("hidden.bs.modal", function() {
+        $("form").trigger("reset")
+        $("#error").html(``)
     })
 })
