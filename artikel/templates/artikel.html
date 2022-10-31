@@ -5,6 +5,36 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
+    $.getJSON("{% url 'artikel:show_json' %}", function(artikel){
+      let users= {};
+                $.each(artikel, function(index,value){
+                if (index === "user"){
+                  for (const iterator of value) {
+                    users[iterator.pk]=iterator.username;
+                  }
+                  console.log(users);
+                }
+                })
+                $.each(artikel, function(index,value){
+                  if (index === "artikel"){
+                    for (const iterator of value) {
+                      console.log(iterator);
+                      console.log();
+                      $("#artikel_containers").append(
+                        `<div class="col-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <h5 class="card-title">${iterator.title}</h5>
+                                <p class="card-text">by ${users[iterator.user_id]} posted on ${dateFormat(iterator.date)}</p>
+                                <p class="card-text">${iterator.short_description}...</p>
+                                <a href="${iterator.id}" class="btn submit">Read more</a>
+                            </div>
+                        
+                            </div>` 
+                      )
+                    }
+                  }
+                })
+        })
     $('#form_artikel').on('submit', function(e) {
         e.preventDefault();
         let title = $("#title").val();
@@ -15,52 +45,72 @@
           data: {"title":title, "description":description},
         }).done(function(resp) {
           console.log(resp)
-          $("#artikel_container").append(
-            `
-            <li>
-              <a href=${resp.pk}>${resp.title}</a> | ${resp.user} <br>
-        ${resp.short_description} ...
-                  </li>
-                        `    
-          )
+          $("#artikel_containers").prepend(
+                        `<div class="col-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <h5 class="card-title">${resp.title}</h5>
+                                <p class="card-text">by ${resp.user} posted on ${dateFormat(resp.date)}</p>
+                                <p class="card-text">${resp.short_description}...</p>
+                                <a href="${resp.pk}" class="btn submit">Read more</a>
+                            </div>
+                        
+                            </div>` 
+                      )
           $("#exampleModal").modal("toggle")
         });
     })
   })
-
+  function dateFormat(date) {
+    let month = {"1":"January",
+    "2":"February",
+    "3":"March",
+    "4":"April",
+    "5":"May",
+    "6":"June",
+    "7":"July",
+    "8":"August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"};
+    return(month[date.slice(5,7)] + " "  + date.slice(8,10) + ", "+ date.slice(0,4));
+  }
 </script>
 
 {% endblock meta %}
 
 {% block content %}
 
-<h1>Hello</h1>
-{% if user.is_authenticated %} 
-<div class="container">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
-        Buat Artikel Baru</button>
-    <a href="{% url 'homepage:homepage' %}"><button type="button" class="btn btn-primary">Kembali </button></a>
+
+<div class="">
+
+  <div class="my-5 py-5">
+    
+    <div class="button_container">
+      <h1 class="d-flex justify-content-center mt-3 button_container">Artikel</h1>
+      <div class="d-flex justify-content-center mt-3 button_container">
+        {% if user.is_authenticated %} 
+          <button font-family: 'poppins'; background-color: #ffffff;" type="button" class="submit mt-0 ml-1 px-2 p-3"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
+          Buat Artikel Baru</button>
+          <a href="{% url 'homepage:homepage' %}"><button font-family: 'poppins'; background-color: #ffffff;" type="button" class="submit mt-0 ml-1 px-2 p-3">Kembali </button></a>
+        {% else %}
+        <a href="{% url 'autentikasi:login' %}">login </a>  untuk menambah artikel
+        <a href="{% url 'homepage:homepage' %}"><button font-family: 'poppins'; background-color: #ffffff;" type="button" class="submit mt-0 ml-1 px-2 p-3">Kembali </button></a>
+        {% endif %} 
+      </div>
     </div>
-{% else %}
-<a href="{% url 'autentikasi:login' %}">login</a>  untuk menambah artikel
-<a href="{% url 'homepage:homepage' %}"><button type="button" class="btn btn-primary">Kembali </button></a>
-{% endif %} 
 
-<ul>
-    {% for artikel in list_artikel %}
-    <li>
-        <a href={{artikel.pk}}>{{artikel.title}}</a> | {{artikel.user}} <br>
-        {{artikel.short_description}} ...
-    </li>
-    {% endfor %}
+<hr>
+<!--cards start here-->
+<div class="row g-3" id = "artikel_containers">
 
-</ul>
-
-<ul id="artikel_container">
-
-</ul>
+</div>
+<!--cards end here-->
 
 
+</div>
+</div>
+<!--modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

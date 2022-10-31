@@ -8,3 +8,5 @@ class Artikel(models.Model):
     title = models.TextField()
     short_description = models.TextField(max_length=60)
     description = models.TextField()
+    class Meta:
+        ordering = ['-date']
