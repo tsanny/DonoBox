@@ -3,19 +3,22 @@
 
 {% block meta %}
   <script>
-      var crowdfundUrl = "http://localhost:8000/crowdfund/funds/json/{{id}}/"
-      var addDonationUrl = "http://localhost:8000/crowdfund/donations/add/{{id}}/"
+      var crowdfundUrl = "{% url 'crowdfund:show_crowdfund_json' id %}"
+      var addDonationUrl = "{% url 'crowdfund:add_donation' id %}"
   </script>
   <script src="{% static 'crowdfund_donator.js' %}"></script>
 {% endblock meta %}
 
 {% block content %}
-  <div class="modal fade" id="form" data-bs-backdrop="static">
+  <div class="my-5 py-5" id="crowdfund">
+    <div class="row justify-content-center p-3" id="detail"></div>
+  </div>
+  <div class="modal fade" id="form">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Formulir Donasi</h5>
-          <a class="btn-close" data-bs-dismiss="modal"></a>
+          <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body text-center">
           <form method="POST" action="">

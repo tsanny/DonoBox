@@ -16,6 +16,17 @@
   letter-spacing: 0.3px !important;
   transition: all 0.5s;
   }
+
+  .footer {
+  position: fixed;
+  bottom: auto;
+  }
+
+  .logo {
+      width: 50px;
+      height: 20px;
+      object-fit: cover;
+    }
 </style>
 
 <div class="">
@@ -26,7 +37,7 @@
           <div class="d-flex w-100 justify-content-between">
             <h3 class="mb-0">Notifikasi</h3>
             <!-- Button trigger modal -->
-            <button type="button" class="submit" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Tambah Saldo
             </button>
           </div>
@@ -50,22 +61,78 @@
           </div>
           <div class="modal-body">
             <form id="form" method="PATCH">
-
               {% csrf_token %}
-
-              <div class="form-floating mb-2">
-                  <p id="currentSaldo">Saldo saat ini: Rp. </p>
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex flex-column px-md-5 px-4 mb-4">
+                  <span>Credit Card</span>
+                  <div class="inputWithIcon">
+                    <input
+                      class="form-control"
+                      type="text"
+                      value="5136 1845 5468 3894"
+                    />
+                    <span>
+                      <img
+                        class='logo'
+                        src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png"
+                        alt=""
+                    /></span>
+                  </div>
+                </div>
               </div>
-
-              <div class="form-floating">
-                  <textarea type="text" name="saldo" placeholder="Masukkan nominal (Rp.)" class="form-control" rows="3"></textarea>
+              <div class="col-md-6">
+                <div class="d-flex flex-column ps-md-5 px-md-0 px-4 mb-4">
+                  <span>Expiration<span class="ps-1">Date</span></span>
+                  <div class="inputWithIcon">
+                    <input type="text" class="form-control" value="05/20" />
+                    <span class="fas fa-calendar-alt"></span>
+                  </div>
+                </div>
               </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button id="tambahSaldoBtn" type="button" class="btn btn-primary" type="submit" data-dismiss="modal" value="Post">Tambah</button>
+              <div class="col-md-6">
+                <div class="d-flex flex-column pe-md-5 px-md-0 px-4 mb-4">
+                  <span>Code CVV</span>
+                  <div class="inputWithIcon">
+                    <input type="password" class="form-control" value="123" />
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
               </div>
-            </form>
+              <div class="col-12">
+                <div class="d-flex flex-column px-md-5 px-4 mb-4">
+                  <span>Name</span>
+                  <div class="inputWithIcon">
+                    <input
+                      class="form-control text-uppercase"
+                      type="text"
+                      value="valdimir berezovkiy"
+                    />
+                    <span class="far fa-user"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                  <div class="d-flex flex-column px-md-5 px-4 mb-0">
+                    <span>Amount</span>
+                    <div class="inputWithIcon">
+                      <input
+                        class="form-control text-uppercase"
+                        type="text"
+                        value="10000"
+                        id="saldo"
+                        name="saldo"
+                      />
+                      <span class="far fa-user"></span>
+                    </div>
+                    <p id="currentSaldo" class="mt-2">Saldo saat ini: Rp. </p>
+                  </div>
+                </div>
+              <div class="col-12 px-md-5 px-4 mt-0">
+                <button id="tambahSaldoBtn" type="button" class="btn btn-primary w-100" type="submit" data-bs-dismiss="modal">Top Up</div>
+              </div>
+            </div>
+          </form>
           </div>
         </div>
       </div>

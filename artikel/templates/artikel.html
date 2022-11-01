@@ -1,66 +1,43 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block meta %}
 <title>Artikel</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-  $(document).ready(function(){
-    $('#form_artikel').on('submit', function(e) {
-        e.preventDefault();
-        let title = $("#title").val();
-        let description = $("#description").val();
-        $.ajax({
-          method: "POST",
-          url: "/artikel/add/",
-          data: {"title":title, "description":description},
-        }).done(function(resp) {
-          console.log(resp)
-          $("#artikel_container").append(
-            `
-            <li>
-              <a href=${resp.pk}>${resp.title}</a> | ${resp.user} <br>
-        ${resp.short_description} ...
-                  </li>
-                        `    
-          )
-          $("#exampleModal").modal("toggle")
-        });
-    })
-  })
 
-</script>
 
 {% endblock meta %}
 
 {% block content %}
 
-<h1>Hello</h1>
-{% if user.is_authenticated %} 
-<div class="container">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
-        Buat Artikel Baru</button>
-    <a href="{% url 'homepage:homepage' %}"><button type="button" class="btn btn-primary">Kembali </button></a>
+
+<div class="">
+
+  <div class="my-5 py-5">
+    
+    <div class="button_container">
+      <h1 class="d-flex justify-content-center mt-3 button_container">Artikel</h1>
+      <div class="d-flex justify-content-center mt-3 button_container">
+        {% if user.is_authenticated %} 
+          <button font-family: 'poppins'; background-color: #ffffff;" type="button" class="submit mt-0 ml-1 px-2 p-3"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">
+          Buat Artikel Baru</button>
+          <a href="{% url 'homepage:homepage' %}"><button font-family: 'poppins'; background-color: #ffffff;" type="button" class="submit mt-0 ml-1 px-2 p-3">Kembali </button></a>
+        {% else %}
+        <a href="{% url 'autentikasi:login' %}">login </a>  untuk menambah artikel
+        <a href="{% url 'homepage:homepage' %}"><button font-family: 'poppins'; background-color: #ffffff;" type="button" class="submit mt-0 ml-1 px-2 p-3">Kembali </button></a>
+        {% endif %} 
+      </div>
     </div>
-{% else %}
-<a href="{% url 'autentikasi:login' %}">login</a>  untuk menambah artikel
-<a href="{% url 'homepage:homepage' %}"><button type="button" class="btn btn-primary">Kembali </button></a>
-{% endif %} 
 
-<ul>
-    {% for artikel in list_artikel %}
-    <li>
-        <a href={{artikel.pk}}>{{artikel.title}}</a> | {{artikel.user}} <br>
-        {{artikel.short_description}} ...
-    </li>
-    {% endfor %}
+<hr>
+<!--cards start here-->
+<div class="row g-3" id = "artikel_containers">
 
-</ul>
-
-<ul id="artikel_container">
-
-</ul>
+</div>
+<!--cards end here-->
 
 
+</div>
+</div>
+<!--modal-->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -89,5 +66,7 @@
       </div>
     </div>
   </div>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  
+  <script src="{% static 'js/artikel.js'%}"></script>
 {% endblock content %}

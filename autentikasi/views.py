@@ -35,15 +35,12 @@ def register(request):
             new_profile.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
             return redirect('autentikasi:login')
-    
     context = {'form':form, 'role_form':role_form}
     return render(request, 'register.html', context)
 
 
 
 def login_user(request):
-    form = UserCreationForm()
-    role_form = AccountRoleForm()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -55,7 +52,7 @@ def login_user(request):
             return response
         else:
             messages.info(request, 'Username atau Password salah!')
-    context = {'form':form, 'role_form':role_form}
+    context = {}
     return render(request, 'login.html', context)
 
 def logout_user(request):

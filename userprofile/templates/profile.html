@@ -233,32 +233,35 @@
   
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-              <a  href="#">Home</a>
-          </li>
-          <li class="nav-item">
-              <a  href="#">About Us</a>
-          </li>
-          <li class="nav-item">
-              <a  href="#">Crowdfund</a>
-          </li>
-          <li class="nav-item">
-              <a  href="#">Notifikasi</a>
-          </li>
-          <li class="nav-item">
-              <a  href="/profile">Profile</a>
-          </li>
-          {% if user.is_authenticated %}
-          <!-- sambungin ke login logout -->
-              <li class="nav-item">
-                  <a href="#"><button class="submit" type="submit">Logout</button></a>
-              </li>
-          {% else %}
-              <li class="nav-item">
-                  <a href="#"><button class="submit" type="submit">Login</button></a>
-              </li>
-          {% endif %}
-      </ul>
+        <li class="nav-item">
+            <a  href="{% url 'homepage:home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a  href="#about">About Us</a>
+        </li>
+        <li class="nav-item">
+            <a  href="{% url 'artikel:show_artikel' %}">Artikel</a>
+        </li>
+        <li class="nav-item">
+            <a  href="{% url 'crowdfund:show_crowdfunds' %}">Crowdfund</a>
+        </li>
+        <li class="nav-item">
+            <a  href="{% url 'notification:show_notification' %}">Notifikasi</a>
+        </li>
+        <li class="nav-item">
+            <a  href="{% url 'userprofile:show_profile' %}">Profile</a>
+        </li>
+        {% if user.is_authenticated %}
+        <!-- sambungin ke login logout -->
+            <li class="nav-item">
+                <a href="{% url 'autentikasi:logout' %}"><button class="submit" type="submit">Logout</button></a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a href="{% url 'autentikasi:login' %}"><button class="submit" type="submit">Login</button></a>
+            </li>
+        {% endif %}
+    </ul>
     </div>
   </nav>
 </header>

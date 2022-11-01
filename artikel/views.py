@@ -1,6 +1,6 @@
-from turtle import title
 from django.shortcuts import render
 from .models import Artikel
+from django.contrib.auth.models import User
 from datetime import datetime
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
@@ -25,7 +25,11 @@ def show_artikel_detail(request, pk):
 def show_json(request):
 
     artikel = Artikel.objects.all()
-    return HttpResponse(serializers.serialize("json", artikel), content_type="application/json")
+    users = User.objects.all()
+    data = serializers.serialize('json', Artikel.objects.all()) 
+    data1 = serializers.serialize('json', User.objects.all())
+    return JsonResponse({"artikel":list(artikel.values()), "user":list(users.values('username', 'pk'))},)
+    #return HttpResponse({0:data, 1:data1}, content_type="application/json")
 
 @csrf_exempt
 def add(request):
@@ -33,12 +37,13 @@ def add(request):
         title = request.POST.get('title')
         description = str(request.POST.get('description'))
 
-        artikel = Artikel(user=request.user, title=title, description=description, date=datetime.now(), short_description=str(description)[0:60])
+        artikel = Artikel(user=request.user, title=title, description=description, date=datetime.today(), short_description=str(description)[0:60])
         artikel.save()
         return JsonResponse(
             {
+            "pk": artikel.pk,
             "user": str(request.user),
             "title": title,
-            "date": datetime.now(),
+            "date": datetime.today(),
             "short_description": str(description)[0:60],
         }, status=200)

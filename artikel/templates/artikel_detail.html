@@ -2,13 +2,29 @@
 
 {% block meta %}
 <title>Artikel</title>
+<style>
+      .footer {
+  position: fixed;
+  bottom: auto;
+  }
 
+  .logo {
+      width: 50px;
+      height: 20px;
+      object-fit: cover;
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
+<div class="">
+
+    <div class="my-5 py-5">
 {% for data in artikel %}
 <h1>{{data.title}}</h1>
 <h2> by {{data.user}} on {{data.date}}</h2>
 <p>{{data.description}}</p>
+</div>
+</div>
 {% endfor %}
 {% endblock content %}

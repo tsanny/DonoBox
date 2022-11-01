@@ -3,11 +3,16 @@
 
 {% block meta %}
   <title>Daftar Penggalangan Dana</title>
+  <script>
+    var crowdfundUrl = "{% url 'crowdfund:show_crowdfund' 1 %}"
+    var myFundsUrl = "{% url 'crowdfund:show_crowdfunds_json_by_me' %}"
+    var addFundUrl = "{% url 'crowdfund:add_crowdfund' %}"
+  </script>
   <script src="{% static 'crowdfunds_fundraiser.js' %}"></script>
 {% endblock meta %}
 
 {% block content %}
-  <div class="text-center p-3">
+  <div class="text-center p-3 my-5 py-5">
     <h1>Daftar Penggalangan Dana</h1>
     <h5 class="text-muted">Berikut adalah galangan dana yang Anda ajukan, {{user}}</h3>
     <br>
@@ -16,15 +21,15 @@
       <br><br>
       Anda belum mengajukan penggalangan dana.
     </div>
+    <div class="row justify-content-center p-3" id="crowdfunds"></div>
   </div>
-  <div class="row justify-content-center p-3" id="crowdfunds"></div>
 
-  <div class="modal fade" id="form" data-bs-backdrop="static">
+  <div class="modal fade" id="form">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Formulir Penggalangan Dana</h5>
-          <a class="btn-close" data-bs-dismiss="modal"></a>
+          <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body text-center">
           <form method="POST" action="">

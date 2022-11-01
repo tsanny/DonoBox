@@ -68,12 +68,12 @@ def add_donation(request, id):
     form.instance.donator = request.user.userprofile
     form.instance.donator_name = request.user.username
     form.instance.crowdfund = Crowdfund.objects.get(pk=id)
-    if form.is_valid() and form.instance.donator.saldo < form.instance.amount:
+    if form.is_valid() and form.instance.donator.saldo > form.instance.amount:
         form.save()
-        # form.instance.donator.saldo -= form.instance.amount
-        # form.instance.donator.save()
-        # form.instance.crowdfund.fundraiser.saldo += form.instance.amount
-        # form.instance.crowdfund.fundraiser.save()
+        form.instance.donator.saldo -= form.instance.amount
+        form.instance.donator.save()
+        form.instance.crowdfund.fundraiser.saldo += form.instance.amount
+        form.instance.crowdfund.fundraiser.save()
         form.instance.crowdfund.collected += form.instance.amount
         form.instance.crowdfund.save()
         fundraiser_notif = Notification.objects.create(
@@ -89,6 +89,7 @@ def add_donation(request, id):
             description=f"Donasi diberikan kepada {form.instance.crowdfund.fundraiser_name} untuk penggalangan dana {form.instance.crowdfund.title}.",
             time=datetime.now(timezone('Asia/Jakarta'))
         )
+        donatur_notif.save()
         donation = [form.instance.crowdfund]
         return HttpResponse(serializers.serialize("json", donation), content_type="application/json")
     return JsonResponse({"error": True})
