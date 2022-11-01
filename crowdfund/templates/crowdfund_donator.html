@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+  <script>
+      var crowdfundUrl = "http://localhost:8000/crowdfund/funds/json/{{id}}/"
+      var addDonationUrl = "http://localhost:8000/crowdfund/donations/add/{{id}}/"
+  </script>
+  <script src="{% static 'crowdfund_donator.js' %}"></script>
+{% endblock meta %}
+
+{% block content %}
+  <div class="modal fade" id="form" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Formulir Donasi</h5>
+          <a class="btn-close" data-bs-dismiss="modal"></a>
+        </div>
+        <div class="modal-body text-center">
+          <form method="POST" action="">
+            {% csrf_token %}
+            <h6>Jumlah Donasi</h6>
+            <span class="text-muted">Jumlah donasi harus di antara 1 dan jumlah saldo.</span>
+            <input type="number" id="amount" placeholder="0" class="form-control">
+            <br>
+            <h6>Komentar kepada Penggalang Dana</h6>
+            <span class="text-muted">Komentar harus tidak lebih dari 1000 karakter.</span>
+            <input type="text" id="comment" placeholder="Tuliskan komentarmu di sini" class="form-control">
+            <br>
+            <div class="text-danger" id="error"></div>
+            <input class="btn border" type="submit" value="Kumpulkan">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

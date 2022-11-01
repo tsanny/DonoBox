@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     'example_app',
     'katalog',
     'notification',
-    'userprofile',
-    'homepage',
     'autentikasi',
     'artikel',
-
+    'crowdfund',
+    'userprofile',
+    'homepage',
 ]
 
 MIDDLEWARE = [

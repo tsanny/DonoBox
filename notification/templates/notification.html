@@ -5,11 +5,71 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-<div class="mx-5 my-3">
+<style>
+  .submit{
+  display: inline-block !important;
+  padding: 5px 10px !important;
+  color: rgb(162, 123, 92) !important;
+  border: 1px solid rgb(162, 123, 92) !important;
+  border-radius: 23px;
+  font-weight: 500 !important;
+  letter-spacing: 0.3px !important;
+  transition: all 0.5s;
+  }
+</style>
 
-    <div class="notifications"></div>
+<div class="">
+  
+    <div class="my-5 py-5">
+      <div class="list-group mx-auto my-0" style="width: 40%;">
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h3 class="mb-0">Notifikasi</h3>
+            <!-- Button trigger modal -->
+            <button type="button" class="submit" data-toggle="modal" data-target="#exampleModal">
+              Tambah Saldo
+            </button>
+          </div>
+        </a>
+      </div>
+      <div class="notifications mb-5"></div>
+      <br/>
+      <br/>
+      <br/>
+    </div>
 
-    <button>Tambah Saldo</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambahkan Saldo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form" method="PATCH">
+
+              {% csrf_token %}
+
+              <div class="form-floating mb-2">
+                  <p id="currentSaldo">Saldo saat ini: Rp. </p>
+              </div>
+
+              <div class="form-floating">
+                  <textarea type="text" name="saldo" placeholder="Masukkan nominal (Rp.)" class="form-control" rows="3"></textarea>
+              </div>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button id="tambahSaldoBtn" type="button" class="btn btn-primary" type="submit" data-dismiss="modal" value="Post">Tambah</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
 
 </div>
 
@@ -20,26 +80,44 @@
     });
   
     async function load() {
+      // Get daftar notifikasi
       $.ajax({url: "http://127.0.0.1:8000/notification/json", type: 'GET', success: function(data) {
-        var res = `
-        <table>
-          <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Time</th>
-          </tr>
-        `;
+        var res = ``;
         for (i = 0; i<data.length; i++) {
           res+=
-                `<tr>
-                    <td>${data[i].fields.title}</td>
-                    <td>${data[i].fields.description}</td>
-                    <td>${data[i].fields.time}</td>
-                </tr>`
+          
+                `
+                <a href="#" class="list-group-item list-group-item-action mx-auto my-0" style="width: 40%;">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">${data[i].fields.title}</h5>
+                    <small class="text-muted">${data[i].fields.timesince}</small>
+                  </div>
+                  <p class="mb-1">${data[i].fields.description}</p>
+                </a>
+                `
         }
-        $(".notifications").html(res+"</table>");
+        $(".notifications").html(res+"</div>");
       }});
+
+      // Get saldo user
+      $.ajax({url: "http://127.0.0.1:8000/profile/json", type: 'GET', success: function(data) {
+        $("#currentSaldo").html("Saldo saat ini: Rp. " + data[0].fields.saldo);
+      }});
+
     };
+    
+    $("#tambahSaldoBtn").click(function() {
+    var data = $("#form");
+    $.ajax({
+      type:'PATCH',
+      url: "http://127.0.0.1:8000/notification/ajax-tambah-saldo",
+      data: data.serialize(),
+      success: function() {
+          $("#form")[0].reset();
+          load();
+      }
+    });
+  });
 
   </script>
 

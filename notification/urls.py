@@ -6,4 +6,5 @@ app_name = "notification"
 urlpatterns = [
     path('', show_notification, name='show_notification'),
     path('json/', notification_json, name='notification_json'),
+    path('ajax-tambah-saldo', ajax_tambah_saldo, name='ajax-tambah-saldo'),
 ]
