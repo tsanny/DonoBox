@@ -6,18 +6,15 @@ $(document).ready(function(){
                   for (const iterator of value) {
                     users[iterator.pk]=iterator.username;
                   }
-                  console.log(users);
                 }
                 })
                 $.each(artikel, function(index,value){
                   if (index === "artikel"){
                     for (const iterator of value) {
-                      console.log(iterator);
-                      console.log();
                       $("#artikel_containers").append(
                         `<div class="col-12 col-md-6 col-lg-4">
                             <div class="card">
-                                <h5 class="card-title">${iterator.title}</h5>
+                                <h3 class="card-title">${iterator.title}</h3>
                                 <p class="card-text">by ${users[iterator.user_id]} posted on ${dateFormat(iterator.date)}</p>
                                 <p class="card-text">${iterator.short_description}...</p>
                                 <a href="${iterator.id}" class="btn submit">Read more</a>
@@ -42,7 +39,7 @@ $(document).ready(function(){
           $("#artikel_containers").prepend(
                         `<div class="col-12 col-md-6 col-lg-4">
                             <div class="card">
-                                <h5 class="card-title">${resp.title}</h5>
+                                <h3 class="card-title">${resp.title}</h3>
                                 <p class="card-text">by ${resp.user} posted on ${dateFormat(resp.date)}</p>
                                 <p class="card-text">${resp.short_description}...</p>
                                 <a href="${resp.pk}" class="btn submit">Read more</a>
