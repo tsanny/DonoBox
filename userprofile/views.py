@@ -14,9 +14,13 @@ def show_profile(request):
 
     user_data = UserProfile.objects.get(user=request.user)
 
+    bio = user_data.bio
     bday = user_data.birthday
     phone = user_data.phone
     email = user_data.email
+
+    if bio == None:
+        bio = "-"
 
     if bday == None:
         bday = "-"
@@ -30,7 +34,7 @@ def show_profile(request):
     context = {
         'user' : request.user,
         'picture' : user_data.picture,
-        'bio' : user_data.bio,
+        'bio' : bio,
         'role' : user_data.role,
         'saldo' : user_data.saldo,
         'birthday' : bday,

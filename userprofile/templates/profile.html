@@ -293,10 +293,13 @@
                   <a
                     data-bs-toggle="modal"
                     data-bs-target="#modalprofile"
-                    class="btn btn-primary"
+                    class="submit mt-0 ml-1 px-2 p-3"
                     role="button"
+                    style = "background-color:  #ffffff; font-family: 'poppins';"
+                    
                     >Edit Profile</a
                   >
+                  
                 </div>
               </div>
               <div class="col-md-6">
@@ -309,7 +312,7 @@
                   <p id="profileemail">{{email}}</p>
                 </div>
                 <div class="media">
-                  <a class="btn btn-primary" role="button" href="/profile/topup">Top Up</a>
+                  <a href="/profile/topup"><button style="font-family: 'poppins'; background-color: #ffffff;" type="button" class="submit mt-0 ml-1 px-2 p-3">Top Up </button></a>
                 </div>
               </div>
             </div>
@@ -351,7 +354,10 @@
             id="profileform"
             data-url="{% url 'userprofile:edit_profile' %}"
           >
-            {% csrf_token %} {{form1.as_p}}
+            {% csrf_token %} 
+            <table>
+            {{form1.as_table}}
+            </table>
             <br />
             <button
               type="button"
@@ -390,16 +396,30 @@
               url: "{% url 'userprofile:show_json' %}",
 
               success: function (response) {
+                console.log(response)
                 $("#modalprofile").modal('hide');
                 $("#profilepicture").attr("src", response[0].fields.picture);
-                $("#profilebio").empty();
-                $("#profilebio").html(response[0].fields.bio);
-                $("#profilephone").empty();
+                if (response[0].fields.bio != null){
+                  $("#profilebio").empty();
+                  $("#profilebio").html(response[0].fields.bio);
+                }
+
+                if (response[0].fields.phone != null){
+                  $("#profilephone").empty();
                 $("#profilephone").html(response[0].fields.phone);
-                $("#profileemail").empty();
+                }
+
+                if (response[0].fields.email != null){
+                  $("#profileemail").empty();
                 $("#profileemail").html(response[0].fields.email);
-                $("#profilebirthday").empty();
+                }
+                
+                
+                if (response[0].fields.birthday != null){
+                  $("#profilebirthday").empty();
                 $("#profilebirthday").html(response[0].fields.birthday); 
+                }
+                
               },
             });
           },
