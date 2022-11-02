@@ -71,6 +71,7 @@ $(document).ready(function() {
               <div class="card-body">
                 <h5>Informasi Lebih Lanjut</h5>
                 ${fillDescription(fund[0]["fields"]["description"])}
+                <div class="text-success" id="update"></div>
               </div>
             </div>
           </div>
@@ -81,15 +82,17 @@ $(document).ready(function() {
                 ${fund[0]["fields"]["fundraiser_name"]}
                 <br><br>
                 <h5>Jumlah Dana Terkumpul</h5>
-                ${fund[0]["fields"]["collected"]}
-                <br><br>
+                <div id="collected">${fund[0]["fields"]["collected"]}</div>
+                <br>
                 <h5>Target Dana Terkumpul</h5>
                 ${fund[0]["fields"]["target"]}
                 <br><br>
                 <h5>Batas Waktu Pengumpulan Dana</h5>
                 ${fillDeadline(fund[0]["fields"]["deadline"])}
                 <br><br>
-                <a class="btn border" data-bs-toggle="modal" data-bs-target="#form">Kumpulkan Donasi</a>
+                <div class="text-center">
+                  <a class="btn border" data-bs-toggle="modal" data-bs-target="#form">Kumpulkan Donasi</a>
+                </div>
               </div>
             </div>
           </div>

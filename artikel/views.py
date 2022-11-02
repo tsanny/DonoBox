@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from math import trunc
 from .models import Artikel
 from django.contrib.auth.models import User
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
@@ -26,9 +27,33 @@ def show_json(request):
 
     artikel = Artikel.objects.all()
     users = User.objects.all()
-    data = serializers.serialize('json', Artikel.objects.all()) 
-    data1 = serializers.serialize('json', User.objects.all())
-    return JsonResponse({"artikel":list(artikel.values()), "user":list(users.values('username', 'pk'))},)
+    seconds_in_day = 60 * 60 * 24
+    print(" ===== ==== == = = === \n")
+    time_diff = {}
+    for art in artikel.values():
+        total_seconds = (datetime.today().replace(tzinfo=None) -  (art["date"].replace(tzinfo=None))).total_seconds()
+        day = trunc(total_seconds / seconds_in_day )
+        hour = trunc((total_seconds - (day*seconds_in_day))/3600)
+        minute = trunc((total_seconds - day*seconds_in_day - hour*3600)/60)
+        second = trunc(total_seconds - day*seconds_in_day - hour*3600 - minute*60)
+        if (day == 0):
+            if (hour == 0):
+                if (minute == 0):
+                    diff = str(second) + " seconds ago"
+                elif (minute == 1):
+                    diff = str(minute) + " minute ago"
+                else:
+                    diff = str(minute) + " minutes ago"
+            elif (hour == 1):
+                diff = str(hour) + " hour ago"
+            else:
+                diff = str(hour) + " hours ago"
+        elif (day == 1):
+            diff = str(day) + " day ago"
+        else:
+            diff = str(day) + " days ago"
+        time_diff[art["id"]] = diff
+    return JsonResponse({"artikel":list(artikel.values()), "user":list(users.values('username', 'pk')), "time_diff":time_diff},)
     #return HttpResponse({0:data, 1:data1}, content_type="application/json")
 
 @csrf_exempt

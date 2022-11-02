@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $.getJSON("/artikel/show_json", function(artikel){
       let users= {};
+      let time_diff = artikel["time_diff"];
                 $.each(artikel, function(index,value){
                 if (index === "user"){
                   for (const iterator of value) {
@@ -10,17 +11,16 @@ $(document).ready(function(){
                 })
                 $.each(artikel, function(index,value){
                   if (index === "artikel"){
+                    console.log(value);
                     for (const iterator of value) {
                       $("#artikel_containers").append(
-                        `<div class="col-12 col-md-6 col-lg-4">
-                            <div class="card">
-                                <h3 class="card-title">${iterator.title}</h3>
-                                <p class="card-text">by ${users[iterator.user_id]} posted on ${dateFormat(iterator.date)}</p>
-                                <p class="card-text">${iterator.short_description}...</p>
-                                <a href="${iterator.id}" class="btn submit">Read more</a>
-                            </div>
-                        
-                            </div>` 
+                        `  <a href="${iterator.id}" class="list-group-item list-group-item-action mx-auto my-0">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">${iterator.title}</h5>
+                          <small class="text-muted">${time_diff[iterator.id]}</small>
+                        </div>
+                        <p class="mb-1">${iterator.short_description}...</p>
+                      </a>`
                       )
                     }
                   }
@@ -37,32 +37,15 @@ $(document).ready(function(){
         }).done(function(resp) {
           console.log(resp)
           $("#artikel_containers").prepend(
-                        `<div class="col-12 col-md-6 col-lg-4">
-                            <div class="card">
-                                <h3 class="card-title">${resp.title}</h3>
-                                <p class="card-text">by ${resp.user} posted on ${dateFormat(resp.date)}</p>
-                                <p class="card-text">${resp.short_description}...</p>
-                                <a href="${resp.pk}" class="btn submit">Read more</a>
-                            </div>
-                        
-                            </div>` 
-                      )
+            `  <a href="${resp.pk}" class="list-group-item list-group-item-action mx-auto my-0">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">${resp.title}</h5>
+              <small class="text-muted">Just now</small>
+            </div>
+            <p class="mb-1">${resp.short_description}...</p>
+          </a>`
+          )
           $("#exampleModal").modal("toggle")
         });
     })
   })
-  function dateFormat(date) {
-    let month = {"1":"January",
-    "2":"February",
-    "3":"March",
-    "4":"April",
-    "5":"May",
-    "6":"June",
-    "7":"July",
-    "8":"August",
-    "9": "September",
-    "10": "October",
-    "11": "November",
-    "12": "December"};
-    return(month[date.slice(5,7)] + " "  + date.slice(8,10) + ", "+ date.slice(0,4));
-  }
