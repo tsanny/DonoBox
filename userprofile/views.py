@@ -33,8 +33,8 @@ def show_profile(request):
     if bday == None:
         bday = "-"
     
-    # else:
-    #     bday = datetime.strptime(str(bday), '%Y-%m-%d')
+    else:
+        bday = bday.strftime("%Y-%m-%d")
 
     if phone == None:
         phone = "-"
