@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.core import serializers
 from userprofile.forms import *
 from django.contrib.auth.decorators import login_required
-
+from datetime import datetime
 
 
 # Create your views here.
@@ -18,12 +18,23 @@ def show_profile(request):
     bday = user_data.birthday
     phone = user_data.phone
     email = user_data.email
+    is_donatur = False
+    is_fundraiser = False
+
+    if user_data.role == 'Donatur':
+        is_donatur = True
+
+    else:
+        is_fundraiser = True
 
     if bio == None:
         bio = "-"
 
     if bday == None:
         bday = "-"
+    
+    # else:
+    #     bday = datetime.strptime(str(bday), '%Y-%m-%d')
 
     if phone == None:
         phone = "-"
@@ -40,6 +51,8 @@ def show_profile(request):
         'birthday' : bday,
         'phone' : phone,
         'email' : email,
+        'is_donatur' : is_donatur,
+        'is_fundraiser' : is_fundraiser,
         'form1' : ProfileForm,
         'form2' : TopUpForm,
     }

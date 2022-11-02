@@ -3,6 +3,7 @@ from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class UserProfile(models.Model):
     donatur = 'Donatur'
@@ -13,10 +14,10 @@ class UserProfile(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to='userprofile/images', null=True, default='homepage/static/img/person.png')
+    picture = models.ImageField(upload_to='static/profilepicture', default='homepage/static/img/person.png')
     bio = models.TextField(null=True)
     role = models.CharField(choices=role_choices, max_length=10, default=donatur,)
     saldo = models.BigIntegerField(default=0)
-    birthday = models.DateField(null=True)
+    birthday = models.DateTimeField(null=True)
     email = models.EmailField(null=True)
     phone = models.CharField(max_length=20 ,null=True)
