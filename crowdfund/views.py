@@ -19,7 +19,7 @@ def show_crowdfunds(request):
         return render(request, "crowdfunds_fundraiser.html", context)
     return render(request, "crowdfunds_donator.html", context)
 
-@login_required(login_url="/autentikasi/login/")
+@login_required(login_url="/autentikasi/")
 def show_crowdfund(request, id):
     context = {
         "id": id,
@@ -31,26 +31,26 @@ def show_crowdfund(request, id):
 
 def show_crowdfunds_json_ongoing(request):
     crowdfunds = Crowdfund.objects\
-        .filter(deadline__gt=datetime.now(timezone('Asia/Jakarta')))\
+        .filter(deadline__gt=datetime.now().replace(tzinfo=timezone("UTC")))\
         .filter(collected__lt=F("target"))
     return HttpResponse(serializers.serialize("json", crowdfunds), content_type="application/json")
 
-@login_required(login_url="/autentikasi/login/")
+@login_required(login_url="/autentikasi/")
 def show_crowdfunds_json_by_me(request):
     crowdfunds = Crowdfund.objects.filter(fundraiser__user=request.user)
     return HttpResponse(serializers.serialize("json", crowdfunds), content_type="application/json")
 
-@login_required(login_url="/autentikasi/login/")
+@login_required(login_url="/autentikasi/")
 def show_crowdfund_json(request, id):
     crowdfund = Crowdfund.objects.filter(pk=id)
     return HttpResponse(serializers.serialize("json", crowdfund), content_type="application/json")
 
-@login_required(login_url="/autentikasi/login/")
+@login_required(login_url="/autentikasi/")
 def show_donations_json_by_fund(request, id):
     donations = Donation.objects.filter(crowdfund__pk=id)
     return HttpResponse(serializers.serialize("json", donations), content_type="application/json")
 
-@login_required(login_url="/autentikasi/login/")
+@login_required(login_url="/autentikasi/")
 def add_crowdfund(request):
     form = CrowdfundForm(request.POST)
     form.instance.fundraiser = request.user.userprofile
@@ -62,7 +62,7 @@ def add_crowdfund(request):
         return HttpResponse(serializers.serialize("json", crowdfund), content_type="application/json")
     return JsonResponse({"error": True})
 
-@login_required(login_url="/autentikasi/login/")
+@login_required(login_url="/autentikasi/")
 def add_donation(request, id):
     form = DonationForm(request.POST)
     form.instance.donator = request.user.userprofile

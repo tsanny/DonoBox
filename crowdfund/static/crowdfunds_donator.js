@@ -39,7 +39,7 @@ function fillDeadline(deadline) {
           break
   }
   var result = "".concat(deadline.substring(8, 10), " ", month, " ", deadline.substring(0, 4))
-  result = result.concat(" - ", deadline.substring(11, 19), " WIB")
+  result = result.concat(" - ", deadline.substring(11, 19))
   return result
 }
 

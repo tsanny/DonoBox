@@ -21,7 +21,7 @@ class CrowdfundForm(ModelForm):
                 self.add_error("description", "Deskripsi harus tidak lebih dari 1000 karakter.")
             if target < 1 or target > 1000000000:
                 self.add_error("target", "Target dana harus di antara 1 dan 1000000000.")
-            if deadline < datetime.now(timezone("Asia/Jakarta")):
+            if deadline < datetime.now().replace(tzinfo=timezone("UTC")):
                 self.add_error("deadline", "Batas waktu harus tidak kurang dari saat ini.")
 
 class DonationForm(ModelForm):
