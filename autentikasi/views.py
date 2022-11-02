@@ -49,7 +49,7 @@ def login_user(request):
             login(request, user) # melakukan login terlebih dahulu
             response = HttpResponseRedirect(reverse("homepage:homepage")) # membuat response
             response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
-            return response
+            return redirect(request.GET.get('next', 'homepage:homepage'))
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
