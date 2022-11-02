@@ -51,11 +51,10 @@ function appendCrowdfund(id, title, fundraiser_name, collected, target, deadline
             <h5 class="card-title">${title}</h5>
             <h6 class="card-subtitle text-muted">Digalang oleh ${fundraiser_name}</h6>
             <hr>
-            <ul>
-              <li>${collected} terkumpul</li>
-              <li>${target} dibutuhkan</li>
-              <li>Batas pengumpulan: ${fillDeadline(deadline)}</li>
-            </ul>
+            <b>${collected}</b> terkumpul - <b>${target}</b> dibutuhkan
+            <br>
+            hingga <b>${fillDeadline(deadline)}</b>
+            <br><br>
             <a href=${crowdfundUrl.replace("1", id)} class="btn border">Lihat Detail</a>
           </div>
         </div>

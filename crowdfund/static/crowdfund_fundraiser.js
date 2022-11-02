@@ -84,7 +84,9 @@ $(document).ready(function() {
                 <h5>Batas Waktu Pengumpulan Dana</h5>
                 ${fillDeadline(fund[0]["fields"]["deadline"])}
                 <br><br>
-                <a class="btn border" data-bs-toggle="modal" data-bs-target="#history">Donasi Terkumpul</a>
+                <div class="text-center">
+                  <a class="btn border" data-bs-toggle="modal" data-bs-target="#history">Donasi Terkumpul</a>
+                </div>
               </div>
             </div>
           </div>
@@ -95,9 +97,13 @@ $(document).ready(function() {
         if (donations.length != 0) {
             $("#no-donations").hide()
             for (const donation of donations) {
+                var comment = `${donation["fields"]["comment"]}`
+                if (comment.length == 0) {
+                  comment = `<span class="text-muted">Donatur tidak memberikan komentar.</span>`
+                }
                 $("#donations").append(`
                   <h6>${donation["fields"]["donator_name"]} mendonasikan ${donation["fields"]["amount"]}</h6>
-                  <p>${donation["fields"]["comment"]}</p>
+                  <p>${comment}</p>
                 `)
             }
         }
