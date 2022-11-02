@@ -31,7 +31,7 @@ def show_json(request):
     print(" ===== ==== == = = === \n")
     time_diff = {}
     for art in artikel.values():
-        total_seconds = (datetime.today().replace(tzinfo=None) -  (art["date"].replace(tzinfo=None) + timedelta(hours = 7))).total_seconds()
+        total_seconds = (datetime.today().replace(tzinfo=None) -  (art["date"].replace(tzinfo=None))).total_seconds()
         day = trunc(total_seconds / seconds_in_day )
         hour = trunc((total_seconds - (day*seconds_in_day))/3600)
         minute = trunc((total_seconds - day*seconds_in_day - hour*3600)/60)
