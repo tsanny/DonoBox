@@ -29,12 +29,6 @@ Dengan adanya DonoBox, pengguna dapat berdonasi atau bersedekah sebagai bentuk s
 - Donatur
 - Pengaju donasi
 
-## Target audience dan user
-Seseorang atau sekelompok orang yang membutuhkan dana untuk suatu tujuan sosial, pribadi, dan lainnya.
-Seseorang yang ingin secara sukarela mendanai suatu acara penggalangan dana.
+## Kontrak Kinerja per Anggota Kelompok
 
-## Tujuan / Objektif Website
-DonoBox bertujuan untuk menjadi wadah dan sarana bagi masyarakat yang menginginkan untuk berdonasi atau menggalang dana bagi yang membutuhkan dengan mudah, terjamin, dan transparan.
-
-## Competitor / Benchmark dari website apa?
-Benchmark dari website ini adalah situs penggalangan dana kitabisa.com.
+## Alur Pengintegrasian dengan Web Service Aplikasi Proyek Tengah Semester
