@@ -30,6 +30,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['pbp-c04.up.railway.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://*.up.railway.app']
+
 # Application definition
 
 INSTALLED_APPS = [
