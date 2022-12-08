@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
@@ -69,7 +69,7 @@ def loginFlutter(request):
     user = authenticate(username=username, password=password)
     if user is not None:
         if user.is_active:
-            auth_login(request, user)
+            login(request, user)
             # Redirect to a success page.
             return JsonResponse({
               "status": True,
