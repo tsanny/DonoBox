@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'crowdfund',
     'userprofile',
     'homepage',
-    "corsheaders",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
