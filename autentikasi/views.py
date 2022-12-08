@@ -5,13 +5,14 @@ from django.core import serializers
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 
-from .forms import AccountRoleForm
+
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 import datetime
+import json
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -59,3 +60,63 @@ def logout_user(request):
     logout(request)
     response = HttpResponseRedirect(reverse('homepage:homepage'))
     return response
+
+
+@csrf_exempt
+def loginFlutter(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            auth_login(request, user)
+            # Redirect to a success page.
+            return JsonResponse({
+              "status": True,
+              "message": "Successfully Logged In!"
+              # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+        else:
+            return JsonResponse({
+              "status": False,
+              "message": "Failed to Login, Account Disabled."
+            }, status=401)
+
+    else:
+        return JsonResponse({
+          "status": False,
+          "message": "Failed to Login, check your email/password."
+        }, status=401)
+
+@csrf_exempt
+def registerFlutter(request):
+    data = json.loads(request.body)
+    dataUser={
+    'username':  data['username'],
+    'password1': data['password1'],
+    'password2': data['password2']
+    }
+    print(dataUser)
+    dataProf={
+        'role':data['role']
+    }
+    print(dataProf)
+    form = UserCreationForm(dataUser or None)
+    prof = AccountRoleForm(dataProf or None)
+
+    if data['password1']==data['password2']:
+        user = form.save()
+  
+        profile = prof.save()
+        profile.user = user
+        profile.save()
+        role = data['role']
+        group = Group.objects.get(name=role)
+        user.groups.add(group)
+        return JsonResponse({
+        'status': 'success'
+        }, status=200)
+    else:
+        return JsonResponse({
+            'status': 'failed'
+        }, status=401)
