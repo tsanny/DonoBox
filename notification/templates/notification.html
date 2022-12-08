@@ -148,7 +148,7 @@
   
     async function load() {
       // Get daftar notifikasi
-      $.ajax({url: "http://127.0.0.1:8000/notification/json", type: 'GET', success: function(data) {
+      $.ajax({url: "{% url 'notification:notification_json' %}", type: 'GET', success: function(data) {
         var res = ``;
         for (i = 0; i<data.length; i++) {
           res+=
@@ -167,7 +167,7 @@
       }});
 
       // Get saldo user
-      $.ajax({url: "http://127.0.0.1:8000/profile/json", type: 'GET', success: function(data) {
+      $.ajax({url: "{% url 'userprofile:show_json' %}", type: 'GET', success: function(data) {
         $("#currentSaldo").html("Saldo saat ini: Rp. " + data[0].fields.saldo);
       }});
 
@@ -177,7 +177,7 @@
     var data = $("#form");
     $.ajax({
       type:'PATCH',
-      url: "http://127.0.0.1:8000/notification/ajax-tambah-saldo",
+      url: "{% url 'notification:ajax-tambah-saldo' %}",
       data: data.serialize(),
       success: function() {
           $("#form")[0].reset();

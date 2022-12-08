@@ -33,8 +33,8 @@ def show_profile(request):
     if bday == None:
         bday = "-"
     
-    # else:
-    #     bday = datetime.strptime(str(bday), '%Y-%m-%d')
+    else:
+        bday = bday.strftime("%Y-%m-%d")
 
     if phone == None:
         phone = "-"
@@ -101,13 +101,14 @@ def edit_saldo(request):
         user_data = UserProfile.objects.get(user=request.user)
         print(f'user saldo {user_data.saldo}')
 
-        user_data.saldo += int(new_saldo)
+        if int(new_saldo) > 0:
+            user_data.saldo += int(new_saldo)
 
-        user_data.save()
+            user_data.save()
             
-        return HttpResponseRedirect('/profile')
-            # if obj.saldo:
-            #     obj.save(update_fields=['saldo'])
+            return HttpResponseRedirect('/profile')
+
+        return HttpResponse("Amount invalid")
 
             
 

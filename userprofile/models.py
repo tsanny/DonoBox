@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    picture = models.ImageField(upload_to='static/profilepicture', default='homepage/static/img/person.png')
+    picture = models.ImageField(upload_to='media', default='media/person.png')
     bio = models.TextField(null=True)
     role = models.CharField(choices=role_choices, max_length=10, default=donatur,)
     saldo = models.BigIntegerField(default=0)

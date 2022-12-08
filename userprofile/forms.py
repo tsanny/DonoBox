@@ -20,10 +20,21 @@ class ProfileForm(ModelForm):
         self.fields['birthday'].required = False
         self.fields['email'].required = False
         self.fields['phone'].required = False
+        
 
 class TopUpForm(ModelForm):
     class Meta:
         model = UserProfile
         fields = ['saldo']
 
+    # def clean_saldo(self):
+    #     cleaned_data = self.cleaned_data['saldo']
+    #     print(cleaned_data)
+    #     amount = cleaned_data['saldo']
+    #     if amount <= 0:
+    #         raise forms.ValidationError("Amount invalid")
+
     
+
+        
+
