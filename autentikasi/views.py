@@ -120,3 +120,11 @@ def registerFlutter(request):
         return JsonResponse({
             'status': 'failed'
         }, status=401)
+
+@csrf_exempt         
+def logoutFlutter(request):
+    logout(request)
+    return JsonResponse({
+            "status": True,
+            "message": "Successfully Logged Out!"
+            }, status=200)
