@@ -107,12 +107,9 @@ def registerFlutter(request):
     if data['password1']==data['password2']:
         user = form.save()
   
-        profile = prof.save()
+        profile = prof.save(commit=False)
         profile.user = user
         profile.save()
-        role = data['role']
-        group = Group.objects.get(name=role)
-        user.groups.add(group)
         return JsonResponse({
         'status': True
         }, status=200)
