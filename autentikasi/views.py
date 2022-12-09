@@ -114,11 +114,11 @@ def registerFlutter(request):
         group = Group.objects.get(name=role)
         user.groups.add(group)
         return JsonResponse({
-        'status': 'success'
+        'status': True
         }, status=200)
     else:
         return JsonResponse({
-            'status': 'failed'
+            'status': False
         }, status=401)
 
 @csrf_exempt         
