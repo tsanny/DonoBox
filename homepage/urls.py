@@ -3,6 +3,7 @@ from homepage.views import home, list_pertanyaan
 from homepage.views import show_json
 from homepage.views import faq_ajax
 from homepage.views import list_pertanyaan
+from homepage.views import faq_flutter
 
 app_name = 'homepage'
 
@@ -12,4 +13,5 @@ urlpatterns = [
     path('home/', home, name='home'),
     path('faq_ajax/', faq_ajax, name='faq_ajax'),
     path('list_pertanyaan/', list_pertanyaan, name='list_pertanyaan'),
+    path('faq_flutter/', faq_flutter, name='faq_flutter'),
 ]

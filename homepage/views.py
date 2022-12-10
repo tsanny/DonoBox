@@ -41,10 +41,32 @@ def faq_ajax(request):
         user = request.user
         pertanyaan = request.POST.get('pertanyaan')
         FrequentlyAskedQuestion.objects.create(user=user, pertanyaan=pertanyaan)
+
     return JsonResponse({"faqs": "new question"},status=200)
 
 def list_pertanyaan(request):
     list_pertanyaan = FrequentlyAskedQuestion.objects.all()
     context = {'list_pertanyaan': list_pertanyaan}
     return render(request, 'form_pertanyaan.html', context)
+
+@csrf_exempt
+def faq_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+     
+        user = request.user
+        pertanyaan = data['pertanyaan']
+        try:
+            FrequentlyAskedQuestion.objects.get(user=user, pertanyaan=pertanyaan)
+            return JsonResponse({"status": "dup"}, status=401)
+        except:
+            addFAQ = FrequentlyAskedQuestion.objects.create(user=user, pertanyaan=pertanyaan)
+
+            addFAQ.save()
+
+        
+            return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
 
