@@ -54,7 +54,40 @@ def show_json(request):
             diff = str(day) + " days ago"
         time_diff[art["id"]] = diff
     return JsonResponse({"artikel":list(artikel.values()), "user":list(users.values('username', 'pk')), "time_diff":time_diff},)
-    #return HttpResponse({0:data, 1:data1}, content_type="application/json")
+
+def show_json_flutter(request):
+    artikel = Artikel.objects.all()
+    seconds_in_day = 60 * 60 * 24
+    print(" ===== ==== == = = === \n")
+    print(artikel.values())
+    result = []
+    for art in artikel.values():
+        temp = art
+        temp["author"] = str(User.objects.filter(pk=art["user_id"])[0])
+        total_seconds = (datetime.today().replace(tzinfo=None) -  (art["date"].replace(tzinfo=None))).total_seconds()
+        day = trunc(total_seconds / seconds_in_day )
+        hour = trunc((total_seconds - (day*seconds_in_day))/3600)
+        minute = trunc((total_seconds - day*seconds_in_day - hour*3600)/60)
+        second = trunc(total_seconds - day*seconds_in_day - hour*3600 - minute*60)
+        if (day == 0):
+            if (hour == 0):
+                if (minute == 0):
+                    diff = str(second) + " seconds ago"
+                elif (minute == 1):
+                    diff = str(minute) + " minute ago"
+                else:
+                    diff = str(minute) + " minutes ago"
+            elif (hour == 1):
+                diff = str(hour) + " hour ago"
+            else:
+                diff = str(hour) + " hours ago"
+        elif (day == 1):
+            diff = str(day) + " day ago"
+        else:
+            diff = str(day) + " days ago"
+        temp["time_diff"] = str(diff)
+        result.append(temp)
+    return JsonResponse(result, safe=False)
 
 @csrf_exempt
 def add(request):
