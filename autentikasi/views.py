@@ -90,33 +90,37 @@ def loginFlutter(request):
 
 @csrf_exempt
 def registerFlutter(request):
-    data = json.loads(request.body)
-    dataUser={
-    'username':  data['username'],
-    'password1': data['password1'],
-    'password2': data['password2']
-    }
-    print(dataUser)
-    dataProf={
-        'role':data['role']
-    }
-    print(dataProf)
-    form = UserCreationForm(dataUser or None)
-    prof = AccountRoleForm(dataProf or None)
-
-    if data['password1']==data['password2']:
-        user = form.save()
-  
-        profile = prof.save(commit=False)
-        profile.user = user
-        profile.save()
+    form = UserCreationForm()
+    role_form = AccountRoleForm()
+    if (request.POST['role'] == ""):
         return JsonResponse({
-        'status': True
-        }, status=200)
-    else:
-        return JsonResponse({
-            'status': False
-        }, status=401)
+              "status": False,
+              "message": "Role tidak boleh kosong!",
+              "role_error": True
+              # Insert any extra data if you want to pass data to Flutter
+            }, status=401)
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            role_form = AccountRoleForm(request.POST)
+            new_profile = role_form.save(commit=False)
+            new_profile.user = new_user
+            new_profile.save()
+            print("ok")
+            return JsonResponse({
+              "status": True,
+              "message": "Successfully Registered!",
+              "role_error": False
+              # Insert any extra data if you want to pass data to Flutter
+            }, status=200)
+    print(form.errors)
+    return JsonResponse({
+              "status": False,
+              "message": form.errors,
+              "role_error": False
+              # Insert any extra data if you want to pass data to Flutter
+            }, status=401)
 
 @csrf_exempt         
 def logoutFlutter(request):
