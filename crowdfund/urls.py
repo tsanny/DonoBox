@@ -11,5 +11,6 @@ urlpatterns = [
     path("funds/json/<int:id>/", show_crowdfund_json, name="show_crowdfund_json"),
     path("donations/json/<int:id>/", show_donations_json_by_fund, name="show_donations_json_by_fund"),
     path("funds/add/", add_crowdfund, name="add_crowdfund"),
-    path("donations/add/<int:id>/", add_donation, name="add_donation")
+    path("donations/add/<int:id>/", add_donation, name="add_donation"),
+    path("flutter/funds/<str:fundraiser_name>/", flutter_crowdfunds_by_fundraiser, name="flutter_crowdfunds_by_fundraiser")
 ]

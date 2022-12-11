@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from userprofile.models import UserProfile
 from django.views.decorators.csrf import csrf_exempt
 from django.http.request import QueryDict
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import User
+
 
 from .models import Notification
 from .forms import SaldoForm
