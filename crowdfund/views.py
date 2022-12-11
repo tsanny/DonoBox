@@ -93,3 +93,8 @@ def add_donation(request, id):
         donation = [form.instance.crowdfund]
         return HttpResponse(serializers.serialize("json", donation), content_type="application/json")
     return JsonResponse({"error": True})
+
+# @login_required(login_url="/autentikasi/")
+def flutter_crowdfunds_by_fundraiser(fundraiser_name):
+    crowdfunds = Crowdfund.objects.filter(fundraiser_name=fundraiser_name)
+    return HttpResponse(serializers.serialize("json", crowdfunds), content_type="application/json")
