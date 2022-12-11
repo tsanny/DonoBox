@@ -115,3 +115,8 @@ def edit_saldo(request):
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", profileobj), content_type="application/json")
+
+def show_json_flutter(request):
+    user_data = UserProfile.objects.get(user=request.user)
+    
+    return JsonResponse([{"user":str(request.user), "bio":user_data.bio, "role":user_data.role, "saldo":user_data.saldo, "birthday":user_data.birthday, "email":user_data.email, "phone":user_data.phone}], safe=False)
