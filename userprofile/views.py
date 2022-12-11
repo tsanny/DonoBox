@@ -6,7 +6,7 @@ from django.core import serializers
 from userprofile.forms import *
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/autentikasi')
@@ -90,11 +90,33 @@ def edit_profile(request):
             
 
             return HttpResponse("success")
-    
-    
 
+@csrf_exempt
+def edit_profile_flutter(request):
+    profileobj = UserProfile.objects.get(user=request.user)
+    if request.POST:
+        if request.POST.get('bio'):
+            profileobj.bio = request.POST.get('bio')
+        
+        if request.POST['birthday']:
+            print(request.POST['birthday'])
+            # profileobj.birthday = request.POST['birthday']
+        
+        if request.POST.get('phone'):
+            profileobj.phone = request.POST.get('phone')
+
+        if request.POST['email']:
+            profileobj.email = request.POST['email']
+
+        profileobj.save()
+
+        return JsonResponse(
+            {
+            "user": str(request.user),
+        }, status=200)
+
+@csrf_exempt
 def edit_saldo(request):
-    user = request.user.userprofile
     if request.POST:
         new_saldo = request.POST['saldo']
         print(f'new saldo {new_saldo}')
@@ -110,13 +132,11 @@ def edit_saldo(request):
 
         return HttpResponse("Amount invalid")
 
-            
-
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", profileobj), content_type="application/json")
 
 def show_json_flutter(request):
     user_data = UserProfile.objects.get(user=request.user)
-    
+
     return JsonResponse([{"user":str(request.user), "bio":user_data.bio, "role":user_data.role, "saldo":user_data.saldo, "birthday":user_data.birthday, "email":user_data.email, "phone":user_data.phone}], safe=False)
