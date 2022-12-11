@@ -21,6 +21,7 @@ def notification_json(request):
     user = request.user
     data = Notification.objects.filter(user=user)
     for instance in data:
+        instance.whenpublished()
         instance.save()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
