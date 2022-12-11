@@ -73,7 +73,10 @@ def loginFlutter(request):
             # Redirect to a success page.
             return JsonResponse({
               "status": True,
-              "message": "Successfully Logged In!"
+              "message": "Successfully Logged In!",
+              "username": request.user.username,
+              "role": request.user.userprofile.role,
+              "saldo": request.user.userprofile.saldo,
               # Insert any extra data if you want to pass data to Flutter
             }, status=200)
         else:
