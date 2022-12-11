@@ -8,6 +8,7 @@ app_name = 'userprofile'
 urlpatterns = [
     path('', show_profile, name='show_profile'),
     path('edit', edit_profile, name='edit_profile'),
+    path('edit-profile-flutter', edit_profile_flutter, name='edit_profile_flutter'),
     path('json', show_json, name='show_json'),
     path('saldo', edit_saldo, name='edit_saldo'),
     path('topup', show_topup, name='show_topup'),
