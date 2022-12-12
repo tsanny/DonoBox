@@ -128,7 +128,7 @@ def edit_saldo(request):
         obj = form.save(commit=False)
 
         if obj.saldo:
-            obj.saldo += request.POST.saldo
+            obj.saldo += int(request.POST.saldo)
             obj.save()
 
         # new_saldo = request.POST['saldo']
