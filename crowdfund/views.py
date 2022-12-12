@@ -101,6 +101,7 @@ def flutter_crowdfunds_by_fundraiser(request, fundraiser_name):
     crowdfunds = Crowdfund.objects.filter(fundraiser_name=fundraiser_name)
     return HttpResponse(serializers.serialize("json", crowdfunds), content_type="application/json")
 
+@csrf_exempt
 def flutter_add_crowdfund(request):
     data = json.loads(request.body)
     form = Crowdfund.objects.create(
