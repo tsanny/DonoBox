@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from notification.models import Notification
 from pytz import timezone
+import json
 
 def show_crowdfunds(request):
     context = {
@@ -102,9 +103,16 @@ def flutter_crowdfunds_by_fundraiser(request, fundraiser_name):
 
 @csrf_exempt
 def flutter_add_crowdfund(request):
-    form = CrowdfundForm(request.POST)
-    form.instance.fundraiser = User.objects.get(username=form.instance.fundraiser_name)
-    form.instance.collected = 0
+    data = json.loads(request.body)
+    form = CrowdfundForm(
+        fundraiser=User.objects.get(username=form.instance.fundraiser_name),
+        fundraiser_name=data["fundraiser_name"],
+        title=data["title"],
+        description=data["description"],
+        collected=0,
+        target=data["target"],
+        deadline=data["deadline"],
+    )
     response = {"status": "error"}
     if form.is_valid():
         form.save()
