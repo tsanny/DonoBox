@@ -130,7 +130,7 @@ def edit_saldo(request):
         if obj.saldo:
             obj.saldo += request.POST.saldo
             obj.save()
-            
+
         # new_saldo = request.POST['saldo']
         # print(f'new saldo {new_saldo}')
         # user_data = UserProfile.objects.get(user=request.user)
@@ -143,7 +143,7 @@ def edit_saldo(request):
             
         return JsonResponse({"status": "success"}, status=200)
 
-        return JsonResponse({"status": "error"}, status=401)
+    return JsonResponse({"status": "error"}, status=401)
 
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
