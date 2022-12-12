@@ -146,11 +146,12 @@ def edit_saldo(request):
 
 @csrf_exempt
 def edit_saldo_flutter(request):
-    user = request.user.userprofile
+    user = UserProfile.objects.get(user=request.user)
     if request.POST:
         saldo_tambahan = request.POST.get('saldo')
         user.saldo += int(saldo_tambahan)
-
+        user.save()
+        
         # if obj.saldo:
         #     obj.save(update_fields=['saldo'])
 
