@@ -122,19 +122,26 @@ def edit_profile_flutter(request):
 
 @csrf_exempt
 def edit_saldo(request):
+    user = request.user.userprofile
+    form = TopUpForm(request.POST, instance=user)
     if request.POST:
-        print('Ini masuk edit saldo')
-        new_saldo = request.POST['saldo']
-        print(f'new saldo {new_saldo}')
-        user_data = UserProfile.objects.get(user=request.user)
-        print(f'user saldo {user_data.saldo}')
+        obj = form.save(commit=False)
 
-        if int(new_saldo) > 0:
-            user_data.saldo += int(new_saldo)
-
-            user_data.save()
+        if obj.saldo:
+            obj.saldo += request.POST.saldo
+            obj.save()
             
-            return JsonResponse({"status": "success"}, status=200)
+        # new_saldo = request.POST['saldo']
+        # print(f'new saldo {new_saldo}')
+        # user_data = UserProfile.objects.get(user=request.user)
+        # print(f'user saldo {user_data.saldo}')
+
+        # if int(new_saldo) > 0:
+        #     user_data.saldo += int(new_saldo)
+
+        #     user_data.save()
+            
+        return JsonResponse({"status": "success"}, status=200)
 
         return JsonResponse({"status": "error"}, status=401)
 
