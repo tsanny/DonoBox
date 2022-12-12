@@ -93,28 +93,32 @@ def edit_profile(request):
 
 @csrf_exempt
 def edit_profile_flutter(request):
-    profileobj = UserProfile.objects.get(user=request.user)
+    user = request.user.userprofile
+    # profileobj = UserProfile.objects.get(user=request.user)
+    form = ProfileForm(request.POST, instance=user)
     if request.POST:
+        obj = form.save(commit=False)
         print('ini masuk edit profile')
-        if request.POST.get('bio'):
-            profileobj.bio = request.POST.get('bio')
-        
-        if request.POST['birthday']:
-            print(request.POST['birthday'])
-            # profileobj.birthday = request.POST['birthday']
-        
-        if request.POST.get('phone'):
-            profileobj.phone = request.POST.get('phone')
+        if obj.picture:
+            obj.save(update_fields=['picture'])
 
-        if request.POST['email']:
-            profileobj.email = request.POST['email']
+        if obj.bio:
+            obj.save(update_fields=['bio'])
 
-        profileobj.save()
+        if obj.birthday:
+            obj.save(update_fields=['birthday'])
 
-        return JsonResponse(
-            {
-            "user": str(request.user),
-        }, status=200)
+        if obj.email:
+            obj.save(update_fields=['email'])
+
+        if obj.phone:
+            obj.save(update_fields=['phone'])
+
+        # profileobj.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+
+    return JsonResponse({"status": "error"}, status=401)
 
 @csrf_exempt
 def edit_saldo(request):
@@ -130,9 +134,9 @@ def edit_saldo(request):
 
             user_data.save()
             
-            return HttpResponseRedirect('/profile')
+            return JsonResponse({"status": "success"}, status=200)
 
-        return HttpResponse("Amount invalid")
+        return JsonResponse({"status": "error"}, status=401)
 
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
