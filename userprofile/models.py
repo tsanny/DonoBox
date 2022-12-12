@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='media', default='media/person.png')
     bio = models.TextField(null=True)
     role = models.CharField(choices=role_choices, max_length=10, default=donatur,)
-    saldo = models.BigIntegerField(default=0)
+    saldo = models.IntegerField(default=0)
     birthday = models.DateTimeField(null=True)
     email = models.EmailField(null=True)
     phone = models.CharField(max_length=20 ,null=True)
