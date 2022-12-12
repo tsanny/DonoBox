@@ -95,6 +95,7 @@ def edit_profile(request):
 def edit_profile_flutter(request):
     profileobj = UserProfile.objects.get(user=request.user)
     if request.POST:
+        print('ini masuk edit profile')
         if request.POST.get('bio'):
             profileobj.bio = request.POST.get('bio')
         
@@ -118,6 +119,7 @@ def edit_profile_flutter(request):
 @csrf_exempt
 def edit_saldo(request):
     if request.POST:
+        print('Ini masuk edit saldo')
         new_saldo = request.POST['saldo']
         print(f'new saldo {new_saldo}')
         user_data = UserProfile.objects.get(user=request.user)
