@@ -2,10 +2,12 @@ from .forms import CrowdfundForm, DonationForm
 from .models import Crowdfund, Donation
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core import serializers
 from django.db.models import F
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from notification.models import Notification
 from pytz import timezone
 
@@ -94,7 +96,17 @@ def add_donation(request, id):
         return HttpResponse(serializers.serialize("json", donation), content_type="application/json")
     return JsonResponse({"error": True})
 
-# @login_required(login_url="/autentikasi/")
 def flutter_crowdfunds_by_fundraiser(request, fundraiser_name):
     crowdfunds = Crowdfund.objects.filter(fundraiser_name=fundraiser_name)
     return HttpResponse(serializers.serialize("json", crowdfunds), content_type="application/json")
+
+@csrf_exempt
+def flutter_add_crowdfund(request):
+    form = CrowdfundForm(request.POST)
+    form.instance.fundraiser = User.objects.get(username=form.instance.fundraiser_name)
+    form.instance.collected = 0
+    response = {"status": "error"}
+    if form.is_valid():
+        form.save()
+        response["status"] = "success"
+    return JsonResponse(response)
