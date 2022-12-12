@@ -13,6 +13,7 @@ urlpatterns = [
     path('saldo', edit_saldo, name='edit_saldo'),
     path('topup', show_topup, name='show_topup'),
     path('json-flutter', show_json_flutter, name='show_json_flutter'),
+    path('saldo-flutter', edit_saldo_flutter, name='edit_saldo_flutter')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

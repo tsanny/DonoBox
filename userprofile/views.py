@@ -144,6 +144,21 @@ def edit_saldo(request):
 
     return JsonResponse({"status": "error"}, status=401)
 
+@csrf_exempt
+def edit_saldo_flutter(request):
+    user = request.user.userprofile
+    if request.POST:
+        saldo_tambahan = request.POST.get('saldo')
+        user.saldo += int(saldo_tambahan)
+
+        # if obj.saldo:
+        #     obj.save(update_fields=['saldo'])
+
+            
+        return JsonResponse({"status": "success"}, status=200)
+
+    return JsonResponse({"status": "error"}, status=401)
+
 def show_json(request):
     profileobj = UserProfile.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", profileobj), content_type="application/json")
