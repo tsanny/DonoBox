@@ -101,10 +101,9 @@ def flutter_crowdfunds_by_fundraiser(request, fundraiser_name):
     crowdfunds = Crowdfund.objects.filter(fundraiser_name=fundraiser_name)
     return HttpResponse(serializers.serialize("json", crowdfunds), content_type="application/json")
 
-@csrf_exempt
 def flutter_add_crowdfund(request):
     data = json.loads(request.body)
-    form = CrowdfundForm(
+    form = Crowdfund.objects.create(
         fundraiser=User.objects.get(username=form.instance.fundraiser_name),
         fundraiser_name=data["fundraiser_name"],
         title=data["title"],
@@ -113,8 +112,5 @@ def flutter_add_crowdfund(request):
         target=data["target"],
         deadline=data["deadline"],
     )
-    response = {"status": "error"}
-    if form.is_valid():
-        form.save()
-        response["status"] = "success"
-    return JsonResponse(response)
+    form.save()
+    return JsonResponse({"status": "success"})
