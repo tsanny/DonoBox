@@ -6,6 +6,10 @@ DonoBox is a website for fundraising and donating online and transparently. x pl
 - Application Benefits
 - With DonoBox, users can donate or give alms as a form of gratitude for sustenance or compassion for others easily and securely. Likewise, for donation requesters, with the X website, donations will be easier to obtain because they can reach more people with an online platform.
 
+# Tech Stack
+- Django Templates for the Web app
+- Django REST API for the Mobile app
+
 # Modules that has been implemented
 - Homepage (Including authentication)
 - Profile
