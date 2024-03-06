@@ -1,40 +1,33 @@
-# Proyek Tengah Semester PBP-C04
-- Nama Website: DonoBox
-- Aplikasi Heroku: pbp-c04.herokuapp.com/
+# About Website
+DonoBox is a website for fundraising and donating online and transparently. x platform provides a platform for individuals and organizations who want to :
 
-## Anggota Kelompok
+- Raise funds for social, personal, and other purposes.
+- Donate easily online through Platform X.
+- Application Benefits
+- With DonoBox, users can donate or give alms as a form of gratitude for sustenance or compassion for others easily and securely. Likewise, for donation requesters, with the X website, donations will be easier to obtain because they can reach more people with an online platform.
+
+## Developers
 - Kevin Marcellius Alrino
 - Azhra Yashna Azka
 - Sulthan Fathurrahman Tsany
 - Nisrina Zakiyah Aeni
 - Calista Vimalametta Heryadi
 
-## Tentang Website
-DonoBox adalah website untuk menggalang dana dan berdonasi secara online dan transparan. platform x menyediakan wadah bagi individu maupun organisasi yang ingin :
-1. Menggalang dana untuk tujuan sosial, personal, dan lainnya.
-2. Berdonasi dengan mudah secara online melalui platform X.
+# Modules that has been implemented
+- Homepage (Including authentication)
+- Profile
+- Donor page
+- Donation Submission Page
+- Article
+- Notifications
+- Roles
+- Donors
+- Donation requestor
+- Target audience and user
+- A person or group of people who need funds for a social, personal, or other purpose. Someone who wants to voluntarily fund a fundraising event.
 
-## Manfaat Aplikasi
-Dengan adanya DonoBox, pengguna dapat berdonasi atau bersedekah sebagai bentuk syukur atas rezeki ataupun rasa kasih sayang terhadap sesama dengan mudah dan terjamin. Begitupun untuk pengaju donasi, dengan website X donasi akan lebih mudah didapatkan karena dapat menjangkau lebih banyak orang dengan platform online.
+## Website Purpose/Objective
+DonoBox aims to be a place and means for people who want to donate or raise funds for those in need easily, securely, and transparently.
 
-## Modul yang akan diimplementasikan
-- Homepage (Termasuk autentikasi)
-- Profile 
-- Halaman Donatur
-- Halaman Pengajuan Donasi
-- Artikel
-- Notifikasi
-
-## Roles
-- Donatur
-- Pengaju donasi
-
-## Target audience dan user
-Seseorang atau sekelompok orang yang membutuhkan dana untuk suatu tujuan sosial, pribadi, dan lainnya.
-Seseorang yang ingin secara sukarela mendanai suatu acara penggalangan dana.
-
-## Tujuan / Objektif Website
-DonoBox bertujuan untuk menjadi wadah dan sarana bagi masyarakat yang menginginkan untuk berdonasi atau menggalang dana bagi yang membutuhkan dengan mudah, terjamin, dan transparan.
-
-## Competitor / Benchmark dari website apa?
-Benchmark dari website ini adalah situs penggalangan dana kitabisa.com.
+## Competitor / Benchmarked to what website?
+The benchmark of this website is the fundraising website kitabisa.com.
