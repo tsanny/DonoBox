@@ -6,13 +6,6 @@ DonoBox is a website for fundraising and donating online and transparently. x pl
 - Application Benefits
 - With DonoBox, users can donate or give alms as a form of gratitude for sustenance or compassion for others easily and securely. Likewise, for donation requesters, with the X website, donations will be easier to obtain because they can reach more people with an online platform.
 
-## Developers
-- Kevin Marcellius Alrino
-- Azhra Yashna Azka
-- Sulthan Fathurrahman Tsany
-- Nisrina Zakiyah Aeni
-- Calista Vimalametta Heryadi
-
 # Modules that has been implemented
 - Homepage (Including authentication)
 - Profile
@@ -31,3 +24,10 @@ DonoBox aims to be a place and means for people who want to donate or raise fund
 
 ## Competitor / Benchmarked to what website?
 The benchmark of this website is the fundraising website kitabisa.com.
+
+## Developers
+- Kevin Marcellius Alrino
+- Azhra Yashna Azka
+- Sulthan Fathurrahman Tsany
+- Nisrina Zakiyah Aeni
+- Calista Vimalametta Heryadi
